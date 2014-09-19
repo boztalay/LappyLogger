@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
 
 int main() {
-	NSLog(@"Hello, world!");
+	@autoreleasepool {
+		NSLog(@"Hello, world!");
+	}
 }
