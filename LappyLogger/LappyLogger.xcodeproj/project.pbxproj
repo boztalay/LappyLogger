@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB2783FE19CFE7D600F2D16B /* LPLLappyLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2783FD19CFE7D600F2D16B /* LPLLappyLogger.m */; };
+		FB27840519CFE93200F2D16B /* LPLBatteryPercentageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FB27840419CFE93200F2D16B /* LPLBatteryPercentageDataSource.m */; };
+		FB27840719CFE97D00F2D16B /* LPLDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FB27840619CFE97D00F2D16B /* LPLDataSource.m */; };
 		FBDFE5CA19CC878B00FAFA90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBDFE5C919CC878B00FAFA90 /* Foundation.framework */; };
 		FBDFE5CD19CC878B00FAFA90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDFE5CC19CC878B00FAFA90 /* main.m */; };
 		FBDFE5D119CC878B00FAFA90 /* LappyLogger.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FBDFE5D019CC878B00FAFA90 /* LappyLogger.1 */; };
+		FBDFE5D819CC87EE00FAFA90 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBDFE5D719CC87EE00FAFA90 /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,11 +30,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FB2783FC19CFE7D600F2D16B /* LPLLappyLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLLappyLogger.h; sourceTree = "<group>"; };
+		FB2783FD19CFE7D600F2D16B /* LPLLappyLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLLappyLogger.m; sourceTree = "<group>"; };
+		FB27840019CFE88300F2D16B /* LPLDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLDataSource.h; sourceTree = "<group>"; };
+		FB27840319CFE93200F2D16B /* LPLBatteryPercentageDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLBatteryPercentageDataSource.h; sourceTree = "<group>"; };
+		FB27840419CFE93200F2D16B /* LPLBatteryPercentageDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLBatteryPercentageDataSource.m; sourceTree = "<group>"; };
+		FB27840619CFE97D00F2D16B /* LPLDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLDataSource.m; sourceTree = "<group>"; };
 		FBDFE5C619CC878B00FAFA90 /* LappyLogger */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LappyLogger; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBDFE5C919CC878B00FAFA90 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FBDFE5CC19CC878B00FAFA90 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FBDFE5CF19CC878B00FAFA90 /* LappyLogger-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LappyLogger-Prefix.pch"; sourceTree = "<group>"; };
 		FBDFE5D019CC878B00FAFA90 /* LappyLogger.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = LappyLogger.1; sourceTree = "<group>"; };
+		FBDFE5D719CC87EE00FAFA90 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBDFE5D819CC87EE00FAFA90 /* IOKit.framework in Frameworks */,
 				FBDFE5CA19CC878B00FAFA90 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +57,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FB2783FF19CFE85800F2D16B /* Data Sources */ = {
+			isa = PBXGroup;
+			children = (
+				FB27840019CFE88300F2D16B /* LPLDataSource.h */,
+				FB27840619CFE97D00F2D16B /* LPLDataSource.m */,
+				FB27840319CFE93200F2D16B /* LPLBatteryPercentageDataSource.h */,
+				FB27840419CFE93200F2D16B /* LPLBatteryPercentageDataSource.m */,
+			);
+			name = "Data Sources";
+			sourceTree = "<group>";
+		};
 		FBDFE5BD19CC878B00FAFA90 = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +88,7 @@
 		FBDFE5C819CC878B00FAFA90 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FBDFE5D719CC87EE00FAFA90 /* IOKit.framework */,
 				FBDFE5C919CC878B00FAFA90 /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -74,7 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				FBDFE5CC19CC878B00FAFA90 /* main.m */,
-				FBDFE5D019CC878B00FAFA90 /* LappyLogger.1 */,
+				FB2783FC19CFE7D600F2D16B /* LPLLappyLogger.h */,
+				FB2783FD19CFE7D600F2D16B /* LPLLappyLogger.m */,
+				FB2783FF19CFE85800F2D16B /* Data Sources */,
 				FBDFE5CE19CC878B00FAFA90 /* Supporting Files */,
 			);
 			path = LappyLogger;
@@ -83,6 +109,7 @@
 		FBDFE5CE19CC878B00FAFA90 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FBDFE5D019CC878B00FAFA90 /* LappyLogger.1 */,
 				FBDFE5CF19CC878B00FAFA90 /* LappyLogger-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -139,6 +166,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB2783FE19CFE7D600F2D16B /* LPLLappyLogger.m in Sources */,
+				FB27840719CFE97D00F2D16B /* LPLDataSource.m in Sources */,
+				FB27840519CFE93200F2D16B /* LPLBatteryPercentageDataSource.m in Sources */,
 				FBDFE5CD19CC878B00FAFA90 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +283,7 @@
 				FBDFE5D619CC878B00FAFA90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

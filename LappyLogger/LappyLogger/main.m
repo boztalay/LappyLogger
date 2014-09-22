@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LPLLappyLogger.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        NSLog(@"Hello, World!");
+        [[LPLLappyLogger sharedInstance] start];
     }
     return 0;
 }
-
