@@ -49,6 +49,7 @@
 - (void)startRecording
 {
     self.timer = [NSTimer timerWithTimeInterval:CAPTURE_INTERVAL_IN_SECONDS target:self selector:@selector(recordDataPoints) userInfo:nil repeats:YES];
+    [self.timer fire];
 }
 
 - (void)recordDataPoints
