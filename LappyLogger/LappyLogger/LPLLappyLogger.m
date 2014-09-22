@@ -48,8 +48,12 @@
 
 - (void)startRecording
 {
-    self.timer = [NSTimer timerWithTimeInterval:CAPTURE_INTERVAL_IN_SECONDS target:self selector:@selector(recordDataPoints) userInfo:nil repeats:YES];
-    [self.timer fire];
+    [[NSProcessInfo processInfo] beginActivityWithOptions:NSActivityBackground reason:@"Needs to log measurements in the background"];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:CAPTURE_INTERVAL_IN_SECONDS target:self selector:@selector(recordDataPoints) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
+    
+    [self recordDataPoints];
 }
 
 - (void)recordDataPoints
