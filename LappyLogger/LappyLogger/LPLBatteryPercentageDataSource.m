@@ -11,7 +11,22 @@
 #import <IOKit/ps/IOPowerSources.h>
 #import <IOKit/ps/IOPSKeys.h>
 
+#define kLogDataFileName @"batteryPercentageLog.ll"
+#define kDataSourceName @"BatteryPercentage"
+
 @implementation LPLBatteryPercentageDataSource
+
+- (id)init
+{
+    self = [super init];
+    if(self) {
+        self.fileManager = [[LPLFileManager alloc] initWithFileName:kLogDataFileName andDataSourceName:kDataSourceName];
+        if(self.fileManager == nil) {
+            return nil;
+        }
+    }
+    return self;
+}
 
 - (void)recordDataPoint
 {

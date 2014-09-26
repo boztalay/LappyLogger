@@ -48,7 +48,10 @@
     }
     NSLog(@"Configuration was good!");
     
-//    [self.dataSources addObject:[[LPLBatteryPercentageDataSource alloc] init]];
+    LPLBatteryPercentageDataSource* batteryPercentageDataSource = [[LPLBatteryPercentageDataSource alloc] init];
+    if(batteryPercentageDataSource != nil) {
+        [self.dataSources addObject:batteryPercentageDataSource];
+    }
     
 //    [self startRecording];
 }
