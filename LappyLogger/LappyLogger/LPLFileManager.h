@@ -12,8 +12,11 @@
 
 @property (strong, nonatomic) NSString* filePath;
 @property (strong, nonatomic) NSString* dataSourceName;
+@property (nonatomic) NSUInteger dataPointLength;
 
-- (id)initWithFileName:(NSString*)fileName andDataSourceName:(NSString*)dataSourceName;
+- (id)initWithFileName:(NSString*)fileName
+     andDataSourceName:(NSString*)dataSourceName
+    andDatapointLength:(NSUInteger)dataPointLength;
 
 - (BOOL)appendDatapointAndReturnSuccess:(NSData*)datapoint;
 

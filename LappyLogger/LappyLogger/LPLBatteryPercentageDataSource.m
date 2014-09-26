@@ -13,6 +13,7 @@
 
 #define kLogDataFileName @"batteryPercentageLog.ll"
 #define kDataSourceName @"BatteryPercentage"
+#define kDataPointLength 1
 
 @implementation LPLBatteryPercentageDataSource
 
@@ -20,7 +21,9 @@
 {
     self = [super init];
     if(self) {
-        self.fileManager = [[LPLFileManager alloc] initWithFileName:kLogDataFileName andDataSourceName:kDataSourceName];
+        self.fileManager = [[LPLFileManager alloc] initWithFileName:kLogDataFileName
+                                                  andDataSourceName:kDataSourceName
+                                                 andDatapointLength:kDataPointLength];
         if(self.fileManager == nil) {
             return nil;
         }
