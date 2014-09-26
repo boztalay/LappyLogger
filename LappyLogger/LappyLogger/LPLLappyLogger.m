@@ -40,11 +40,13 @@
 
 - (void)start
 {
+    NSLog(@"Reading the configuration...");
     BOOL isConfigCorrect = [[LPLConfigManager sharedInstance] readConfigAndReturnSuccess];
     if(!isConfigCorrect) {
         NSLog(@"Something's wrong with the configuration! Exiting.");
         return;
     }
+    NSLog(@"Configuration was good!");
     
 //    [self.dataSources addObject:[[LPLBatteryPercentageDataSource alloc] init]];
     

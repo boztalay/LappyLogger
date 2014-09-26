@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 static NSString* LPLConfigLogDataDirectoryKey = @"LogDataDirectory";
-static NSString* LPLConfigTimedDataSourceIntervalKey = @"TimeDataSourceInterval";
+static NSString* LPLConfigTimedDataSourceIntervalKey = @"TimedDataSourceInterval";
 
 @interface LPLConfigManager : NSObject
 
