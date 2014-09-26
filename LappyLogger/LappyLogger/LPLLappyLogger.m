@@ -50,10 +50,15 @@
     
     LPLBatteryPercentageDataSource* batteryPercentageDataSource = [[LPLBatteryPercentageDataSource alloc] init];
     if(batteryPercentageDataSource != nil) {
+        NSLog(@"Created the battery percentage data source successfully");
         [self.dataSources addObject:batteryPercentageDataSource];
     }
     
-//    [self startRecording];
+    NSLog(@" ");
+    NSLog(@"Starting data recording");
+    NSLog(@" ");
+    
+    [self startRecording];
 }
 
 #pragma mark - Recording

@@ -18,6 +18,6 @@
      andDataSourceName:(NSString*)dataSourceName
     andDatapointLength:(NSUInteger)dataPointLength;
 
-- (BOOL)appendDatapointAndReturnSuccess:(NSData*)datapoint;
+- (BOOL)appendDataPointAndReturnSuccess:(NSData*)dataPoint;
 
 @end

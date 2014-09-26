@@ -157,8 +157,8 @@
     return (dataSourceNameStart + dataSourceNameLength);
 }
 
-// TODO this might be able to do a little more validation than checking that the timestamps are
-// monotonic, but that might be enough to catch most formatting issues
+// TODO this might need to do a little more validation than checking that the timestamps are
+// monotonic, but that also might be enough to catch most formatting issues
 - (BOOL)validateDataPointsInFile:(NSData*)fileContents startingAtIndex:(NSUInteger)startIndexOfDataPoints
 {
     NSUInteger lastTimestamp = 0;
@@ -173,12 +173,13 @@
         [fileContents getBytes:currentDataPointTimestamp range:NSMakeRange(currentIndex, kTimestampLength)];
         [fileContents getBytes:currentDataPointData range:NSMakeRange(currentIndex + kTimestampLength, self.dataPointLength)];
         
-        NSUInteger currentTimestamp = (NSUInteger)(*currentDataPointTimestamp);
-        if(lastTimestamp > currentTimestamp) {
+        NSUInteger* currentTimestamp = (NSUInteger*)(currentDataPointTimestamp);
+        if(lastTimestamp > *currentTimestamp) {
+            NSLog(@"Bad timestamp at byte %lu!", (unsigned long)currentIndex);
             areDataPointsValid = NO;
             break;
         }
-        lastTimestamp = currentTimestamp;
+        lastTimestamp = *currentTimestamp;
     }
     
     free(currentDataPointTimestamp);
@@ -189,9 +190,26 @@
 
 #pragma mark - Writing new datapoints to the file
 
-- (BOOL)appendDatapointAndReturnSuccess:(NSData*)datapoint
+- (BOOL)appendDataPointAndReturnSuccess:(NSData*)dataPoint
 {
-    //TODO
+    if(dataPoint.length != self.dataPointLength) {
+        return NO;
+    }
+    
+    CFAbsoluteTime timestamp = CFAbsoluteTimeGetCurrent();
+    NSUInteger timestampToWrite = (NSUInteger)timestamp;
+
+    @try {
+        NSFileHandle* fileHandle = [NSFileHandle fileHandleForWritingAtPath:self.filePath];
+        [fileHandle seekToEndOfFile];
+        [fileHandle writeData:[NSData dataWithBytes:&timestampToWrite length:kTimestampLength]];
+        [fileHandle writeData:dataPoint];
+        [fileHandle closeFile];
+    } @catch(NSException* e) {
+        NSLog(@"Error writing to the file: %@", e);
+        return NO;
+    }
+    
     return YES;
 }
 

@@ -33,8 +33,15 @@
 
 - (void)recordDataPoint
 {
-    CGFloat batteryPercentage = [self getBatteryPercentage];
-    NSLog(@"Battery: %f", batteryPercentage);
+    char batteryPercentage = (char)[self getBatteryPercentage];
+    NSLog(@"Battery percentage: %d", (int)batteryPercentage);
+    
+    BOOL writeSuccess = [self.fileManager appendDataPointAndReturnSuccess:[NSData dataWithBytes:&batteryPercentage length:kDataPointLength]];
+    if(!writeSuccess) {
+        NSLog(@"Couldn't append the latest datapoint to the log file!");
+    } else {
+        NSLog(@"Successfully recorded the datapoint");
+    }
 }
 
 - (CGFloat)getBatteryPercentage
