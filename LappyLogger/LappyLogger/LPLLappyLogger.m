@@ -7,6 +7,7 @@
 //
 
 #import "LPLLappyLogger.h"
+#import "LPLConfigManager.h"
 #import "LPLDataSource.h"
 #import "LPLBatteryPercentageDataSource.h"
 
@@ -39,9 +40,15 @@
 
 - (void)start
 {
-    [self.dataSources addObject:[[LPLBatteryPercentageDataSource alloc] init]];
+    BOOL isConfigCorrect = [[LPLConfigManager sharedInstance] readConfigAndReturnSuccess];
+    if(!isConfigCorrect) {
+        NSLog(@"Something's wrong with the configuration! Exiting.");
+        return;
+    }
     
-    [self startRecording];
+//    [self.dataSources addObject:[[LPLBatteryPercentageDataSource alloc] init]];
+    
+//    [self startRecording];
 }
 
 #pragma mark - Recording

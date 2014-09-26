@@ -10,8 +10,11 @@
 
 @interface LPLFileManager : NSObject
 
+@property (strong, nonatomic) NSString* filePath;
+@property (strong, nonatomic) NSString* dataSourceName;
+
 - (id)initWithFileName:(NSString*)fileName;
 
-- (void)appendDatapoint:(
+- (BOOL)appendDatapointAndReturnSuccess:(NSData*)datapoint;
 
 @end
