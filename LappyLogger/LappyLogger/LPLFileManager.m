@@ -161,7 +161,7 @@
 // monotonic, but that also might be enough to catch most formatting issues
 - (BOOL)validateDataPointsInFile:(NSData*)fileContents startingAtIndex:(NSUInteger)startIndexOfDataPoints
 {
-    NSUInteger lastTimestamp = 0;
+    unsigned int lastTimestamp = 0;
     NSUInteger sizeOfDataPoint = kTimestampLength + self.dataPointLength;
     
     char* currentDataPointTimestamp = malloc(kTimestampLength * sizeof(char));
@@ -173,7 +173,7 @@
         [fileContents getBytes:currentDataPointTimestamp range:NSMakeRange(currentIndex, kTimestampLength)];
         [fileContents getBytes:currentDataPointData range:NSMakeRange(currentIndex + kTimestampLength, self.dataPointLength)];
         
-        NSUInteger* currentTimestamp = (NSUInteger*)(currentDataPointTimestamp);
+        unsigned int* currentTimestamp = (unsigned int*)(currentDataPointTimestamp);
         if(lastTimestamp > *currentTimestamp) {
             NSLog(@"Bad timestamp at byte %lu!", (unsigned long)currentIndex);
             areDataPointsValid = NO;
