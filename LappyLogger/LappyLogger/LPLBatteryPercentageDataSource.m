@@ -7,6 +7,7 @@
 //
 
 #import "LPLBatteryPercentageDataSource.h"
+#import "LPLBatteryPercentageDataTranslator.h"
 #import <CoreFoundation/CoreFoundation.h>
 #import <IOKit/ps/IOPowerSources.h>
 #import <IOKit/ps/IOPSKeys.h>
@@ -27,6 +28,8 @@
         if(self.fileManager == nil) {
             return nil;
         }
+        
+        self.dataTranslator = [[LPLBatteryPercentageDataTranslator alloc] init];
     }
     return self;
 }
