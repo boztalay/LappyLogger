@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FB0D421519D1185500B70375 /* LPLFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0D421419D1185500B70375 /* LPLFileManager.m */; };
+		FB0D421519D1185500B70375 /* LPLLogFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0D421419D1185500B70375 /* LPLLogFileManager.m */; };
 		FB0D421919D1296600B70375 /* LPLConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0D421819D1296600B70375 /* LPLConfigManager.m */; };
 		FB2783FE19CFE7D600F2D16B /* LPLLappyLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2783FD19CFE7D600F2D16B /* LPLLappyLogger.m */; };
 		FB27840519CFE93200F2D16B /* LPLBatteryPercentageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FB27840419CFE93200F2D16B /* LPLBatteryPercentageDataSource.m */; };
 		FB27840719CFE97D00F2D16B /* LPLDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FB27840619CFE97D00F2D16B /* LPLDataSource.m */; };
+		FB75747219DDA15F00CD62DB /* LPLBatteryPercentageDataTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB75747119DDA15F00CD62DB /* LPLBatteryPercentageDataTranslator.m */; };
 		FBDFE5CA19CC878B00FAFA90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBDFE5C919CC878B00FAFA90 /* Foundation.framework */; };
 		FBDFE5CD19CC878B00FAFA90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDFE5CC19CC878B00FAFA90 /* main.m */; };
 		FBDFE5D119CC878B00FAFA90 /* LappyLogger.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FBDFE5D019CC878B00FAFA90 /* LappyLogger.1 */; };
@@ -32,8 +33,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FB0D421319D1185500B70375 /* LPLFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLFileManager.h; sourceTree = "<group>"; };
-		FB0D421419D1185500B70375 /* LPLFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLFileManager.m; sourceTree = "<group>"; };
+		FB0D421319D1185500B70375 /* LPLLogFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLLogFileManager.h; sourceTree = "<group>"; };
+		FB0D421419D1185500B70375 /* LPLLogFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLLogFileManager.m; sourceTree = "<group>"; };
 		FB0D421719D1296600B70375 /* LPLConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLConfigManager.h; sourceTree = "<group>"; };
 		FB0D421819D1296600B70375 /* LPLConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLConfigManager.m; sourceTree = "<group>"; };
 		FB2783FC19CFE7D600F2D16B /* LPLLappyLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLLappyLogger.h; sourceTree = "<group>"; };
@@ -42,6 +43,9 @@
 		FB27840319CFE93200F2D16B /* LPLBatteryPercentageDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLBatteryPercentageDataSource.h; sourceTree = "<group>"; };
 		FB27840419CFE93200F2D16B /* LPLBatteryPercentageDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLBatteryPercentageDataSource.m; sourceTree = "<group>"; };
 		FB27840619CFE97D00F2D16B /* LPLDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLDataSource.m; sourceTree = "<group>"; };
+		FB75746E19DDA07900CD62DB /* LPLDataTranslator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPLDataTranslator.h; sourceTree = "<group>"; };
+		FB75747019DDA15F00CD62DB /* LPLBatteryPercentageDataTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLBatteryPercentageDataTranslator.h; sourceTree = "<group>"; };
+		FB75747119DDA15F00CD62DB /* LPLBatteryPercentageDataTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLBatteryPercentageDataTranslator.m; sourceTree = "<group>"; };
 		FBDFE5C619CC878B00FAFA90 /* LappyLogger */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LappyLogger; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBDFE5C919CC878B00FAFA90 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FBDFE5CC19CC878B00FAFA90 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -66,8 +70,8 @@
 		FB0D421219D1183800B70375 /* File Management */ = {
 			isa = PBXGroup;
 			children = (
-				FB0D421319D1185500B70375 /* LPLFileManager.h */,
-				FB0D421419D1185500B70375 /* LPLFileManager.m */,
+				FB0D421319D1185500B70375 /* LPLLogFileManager.h */,
+				FB0D421419D1185500B70375 /* LPLLogFileManager.m */,
 			);
 			name = "File Management";
 			sourceTree = "<group>";
@@ -86,10 +90,21 @@
 			children = (
 				FB27840019CFE88300F2D16B /* LPLDataSource.h */,
 				FB27840619CFE97D00F2D16B /* LPLDataSource.m */,
-				FB27840319CFE93200F2D16B /* LPLBatteryPercentageDataSource.h */,
-				FB27840419CFE93200F2D16B /* LPLBatteryPercentageDataSource.m */,
+				FB75746E19DDA07900CD62DB /* LPLDataTranslator.h */,
+				FB75746F19DDA13500CD62DB /* Battery Percentage */,
 			);
 			name = "Data Sources";
+			sourceTree = "<group>";
+		};
+		FB75746F19DDA13500CD62DB /* Battery Percentage */ = {
+			isa = PBXGroup;
+			children = (
+				FB27840319CFE93200F2D16B /* LPLBatteryPercentageDataSource.h */,
+				FB27840419CFE93200F2D16B /* LPLBatteryPercentageDataSource.m */,
+				FB75747019DDA15F00CD62DB /* LPLBatteryPercentageDataTranslator.h */,
+				FB75747119DDA15F00CD62DB /* LPLBatteryPercentageDataTranslator.m */,
+			);
+			name = "Battery Percentage";
 			sourceTree = "<group>";
 		};
 		FBDFE5BD19CC878B00FAFA90 = {
@@ -192,8 +207,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB75747219DDA15F00CD62DB /* LPLBatteryPercentageDataTranslator.m in Sources */,
 				FB2783FE19CFE7D600F2D16B /* LPLLappyLogger.m in Sources */,
-				FB0D421519D1185500B70375 /* LPLFileManager.m in Sources */,
+				FB0D421519D1185500B70375 /* LPLLogFileManager.m in Sources */,
 				FB0D421919D1296600B70375 /* LPLConfigManager.m in Sources */,
 				FB27840719CFE97D00F2D16B /* LPLDataSource.m in Sources */,
 				FB27840519CFE93200F2D16B /* LPLBatteryPercentageDataSource.m in Sources */,

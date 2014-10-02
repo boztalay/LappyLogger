@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Ben Oztalay. All rights reserved.
 //
 
-#import "LPLFileManager.h"
+#import "LPLLogFileManager.h"
 #import "LPLConfigManager.h"
 
 #define kMagicNumber "BOLL"
@@ -17,11 +17,9 @@
 #define kHeaderLength (kMagicNumberLength + kVersionNumberLength + kDataPointLengthLength)
 #define kTimestampLength 4
 
-// Oh yeah we're doing this custom file format thing
+@implementation LPLLogFileManager
 
-@implementation LPLFileManager
-
-#pragma mark - Init, creating and/or validating the file
+#pragma mark - Init for writing, which reads in and validates the file according to the given parameters
 
 - (id)initWithFileName:(NSString*)fileName
      andDataSourceName:(NSString*)dataSourceName
@@ -212,5 +210,7 @@
     
     return YES;
 }
+
+#pragma mark - Reading files
 
 @end

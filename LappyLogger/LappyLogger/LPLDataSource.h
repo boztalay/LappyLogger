@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LPLFileManager.h"
+#import "LPLLogFileManager.h"
+#import "LPLDataTranslator.h"
 
 @interface LPLDataSource : NSObject
 
-@property (strong, nonatomic) LPLFileManager* fileManager;
+@property (strong, nonatomic) LPLLogFileManager* fileManager;
+@property (strong, nonatomic) id<LPLDataTranslator> dataTranslator;
 
 - (void)recordDataPoint;
 

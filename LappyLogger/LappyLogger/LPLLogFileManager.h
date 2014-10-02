@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LPLFileManager : NSObject
+@interface LPLLogFileManager : NSObject
 
 @property (strong, nonatomic) NSString* filePath;
 @property (strong, nonatomic) NSString* dataSourceName;

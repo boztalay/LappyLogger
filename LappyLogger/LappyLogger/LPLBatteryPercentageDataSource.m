@@ -21,9 +21,9 @@
 {
     self = [super init];
     if(self) {
-        self.fileManager = [[LPLFileManager alloc] initWithFileName:kLogDataFileName
-                                                  andDataSourceName:kDataSourceName
-                                                 andDatapointLength:kDataPointLength];
+        self.fileManager = [[LPLLogFileManager alloc] initWithFileName:kLogDataFileName
+                                                     andDataSourceName:kDataSourceName
+                                                    andDatapointLength:kDataPointLength];
         if(self.fileManager == nil) {
             return nil;
         }
