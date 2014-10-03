@@ -14,6 +14,6 @@
 
 - (NSData*)translateObjectToData:(id)objectToTranslate;
 - (id)translateDataToObject:(NSData*)dataToTranslate;
-- (NSUInteger)dataPointLength;
+- (NSUInteger)dataLengthInBytes;
 
 @end

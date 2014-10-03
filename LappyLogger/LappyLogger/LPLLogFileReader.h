@@ -12,6 +12,7 @@
 
 @interface LPLLogFileReader : NSObject
 
+@property (strong, nonatomic) NSString* filePath;
 @property (strong, nonatomic) id<LPLDataTranslator> dataTranslator;
 @property (strong, nonatomic) LPLLogFileHeader* logFileHeader;
 @property (strong, nonatomic) NSArray* dataPoints;

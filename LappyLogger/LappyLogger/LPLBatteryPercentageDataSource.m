@@ -8,6 +8,7 @@
 
 #import "LPLBatteryPercentageDataSource.h"
 #import "LPLBatteryPercentageDataTranslator.h"
+#import "LPLLogFileReader.h"
 #import <CoreFoundation/CoreFoundation.h>
 #import <IOKit/ps/IOPowerSources.h>
 #import <IOKit/ps/IOPSKeys.h>

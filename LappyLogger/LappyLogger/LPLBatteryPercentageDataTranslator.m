@@ -15,12 +15,12 @@
 - (NSData*)translateObjectToData:(id)objectToTranslate
 {
     char batteryPercentage = [objectToTranslate charValue];
-    return [NSData dataWithBytes:&batteryPercentage length:[self dataPointLength]];
+    return [NSData dataWithBytes:&batteryPercentage length:[self dataLengthInBytes]];
 }
 
 - (id)translateDataToObject:(NSData *)dataToTranslate
 {
-    if(dataToTranslate.length != [self dataPointLength]) {
+    if(dataToTranslate.length != [self dataLengthInBytes]) {
         return nil;
     }
     
@@ -28,7 +28,7 @@
     return [NSNumber numberWithUnsignedChar:batteryPercentage];
 }
 
-- (NSUInteger)dataPointLength
+- (NSUInteger)dataLengthInBytes
 {
     return kDataPointLength;
 }

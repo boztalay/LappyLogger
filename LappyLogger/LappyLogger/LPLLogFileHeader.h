@@ -14,7 +14,9 @@
 @property (nonatomic) NSUInteger versionNumber;
 @property (nonatomic) NSUInteger dataPointLength;
 @property (strong, nonatomic) NSString* dataSourceName;
+@property (strong, nonatomic) NSData* rawData;
 
-- (id)initFromFileContents:(NSData*)fileContents;
++ (LPLLogFileHeader*)logFileHeaderFromFileContents:(NSData*)fileContents;
++ (LPLLogFileHeader*)logFileHeaderFromDataPointLength:(NSUInteger)dataPointLength andDataSourceName:(NSString*)dataSourceName;
 
 @end
