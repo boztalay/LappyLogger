@@ -8,7 +8,6 @@
 
 #import "LPLBatteryPercentageDataSource.h"
 #import "LPLBatteryPercentageDataTranslator.h"
-#import "LPLLogFileReader.h"
 #import <CoreFoundation/CoreFoundation.h>
 #import <IOKit/ps/IOPowerSources.h>
 #import <IOKit/ps/IOPSKeys.h>
@@ -23,24 +22,24 @@
 {
     self = [super init];
     if(self) {
-        self.fileManager = [[LPLLogFileManager alloc] initWithFileName:kLogDataFileName
-                                                     andDataSourceName:kDataSourceName
-                                                    andDatapointLength:kDataPointLength];
-        if(self.fileManager == nil) {
+        self.dataTranslator = [[LPLBatteryPercentageDataTranslator alloc] init];
+        
+        self.logFileWriter = [[LPLLogFileWriter alloc] initWithFileName:kLogDataFileName
+                                                      andDataSourceName:kDataSourceName
+                                                      andDataTranslator:self.dataTranslator];
+        if(self.logFileWriter == nil) {
             return nil;
         }
-        
-        self.dataTranslator = [[LPLBatteryPercentageDataTranslator alloc] init];
     }
     return self;
 }
 
 - (void)recordDataPoint
 {
-    char batteryPercentage = (char)[self getBatteryPercentage];
+    unsigned char batteryPercentage = (unsigned char)[self getBatteryPercentage];
     NSLog(@"Battery percentage: %d", (int)batteryPercentage);
     
-    BOOL writeSuccess = [self.fileManager appendDataPointAndReturnSuccess:[NSData dataWithBytes:&batteryPercentage length:kDataPointLength]];
+    BOOL writeSuccess = [self.logFileWriter appendDataPointAndReturnSuccess:[NSNumber numberWithUnsignedChar:batteryPercentage]];
     if(!writeSuccess) {
         NSLog(@"Couldn't append the latest datapoint to the log file!");
     } else {

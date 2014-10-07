@@ -17,8 +17,8 @@
                            withDataTranslator:(id<LPLDataTranslator>)dataTranslator
 {
     LPLLogDataPoint* dataPoint = [[LPLLogDataPoint alloc] init];
-    NSUInteger dataPointLengthInBytes = kTimestampLength + [dataTranslator dataLengthInBytes];
     
+    NSUInteger dataPointLengthInBytes = kTimestampLength + [dataTranslator dataLengthInBytes];
     if(fileContents.length < index + dataPointLengthInBytes) {
         return nil;
     }
@@ -36,9 +36,14 @@
 {
     LPLLogDataPoint* dataPoint = [[LPLLogDataPoint alloc] init];
     
+    NSData* dataToWrite = [dataTranslator translateObjectToData:data];
+    if(dataToWrite == nil) {
+        return nil;
+    }
+    
     NSMutableData* dataPointRawData = [[NSMutableData alloc] init];
     [dataPointRawData appendBytes:&timestamp length:kTimestampLength];
-    [dataPointRawData appendData:[dataTranslator translateObjectToData:data]];
+    [dataPointRawData appendData:dataToWrite];
     
     dataPoint.rawData = dataPointRawData;
     dataPoint.timestamp = timestamp;

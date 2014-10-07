@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FB0D421519D1185500B70375 /* LPLLogFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0D421419D1185500B70375 /* LPLLogFileManager.m */; };
 		FB0D421919D1296600B70375 /* LPLConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0D421819D1296600B70375 /* LPLConfigManager.m */; };
 		FB2783FE19CFE7D600F2D16B /* LPLLappyLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2783FD19CFE7D600F2D16B /* LPLLappyLogger.m */; };
 		FB27840519CFE93200F2D16B /* LPLBatteryPercentageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FB27840419CFE93200F2D16B /* LPLBatteryPercentageDataSource.m */; };
@@ -16,6 +15,7 @@
 		FB75747519DDA56E00CD62DB /* LPLLogFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = FB75747419DDA56E00CD62DB /* LPLLogFileReader.m */; };
 		FB75747B19DDAC2B00CD62DB /* LPLLogFileHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FB75747A19DDAC2B00CD62DB /* LPLLogFileHeader.m */; };
 		FB75747D19DE5F6300CD62DB /* LPLLogDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = FB75747C19DE5F6300CD62DB /* LPLLogDataPoint.m */; };
+		FB75748019DE775900CD62DB /* LPLLogFileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = FB75747F19DE775900CD62DB /* LPLLogFileWriter.m */; };
 		FBDFE5CA19CC878B00FAFA90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBDFE5C919CC878B00FAFA90 /* Foundation.framework */; };
 		FBDFE5CD19CC878B00FAFA90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDFE5CC19CC878B00FAFA90 /* main.m */; };
 		FBDFE5D119CC878B00FAFA90 /* LappyLogger.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FBDFE5D019CC878B00FAFA90 /* LappyLogger.1 */; };
@@ -36,8 +36,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FB0D421319D1185500B70375 /* LPLLogFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLLogFileManager.h; sourceTree = "<group>"; };
-		FB0D421419D1185500B70375 /* LPLLogFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLLogFileManager.m; sourceTree = "<group>"; };
 		FB0D421719D1296600B70375 /* LPLConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLConfigManager.h; sourceTree = "<group>"; };
 		FB0D421819D1296600B70375 /* LPLConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLConfigManager.m; sourceTree = "<group>"; };
 		FB2783FC19CFE7D600F2D16B /* LPLLappyLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLLappyLogger.h; sourceTree = "<group>"; };
@@ -55,6 +53,8 @@
 		FB75747919DDAB5400CD62DB /* LPLLogDataPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPLLogDataPoint.h; sourceTree = "<group>"; };
 		FB75747A19DDAC2B00CD62DB /* LPLLogFileHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLLogFileHeader.m; sourceTree = "<group>"; };
 		FB75747C19DE5F6300CD62DB /* LPLLogDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLLogDataPoint.m; sourceTree = "<group>"; };
+		FB75747E19DE775900CD62DB /* LPLLogFileWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLLogFileWriter.h; sourceTree = "<group>"; };
+		FB75747F19DE775900CD62DB /* LPLLogFileWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLLogFileWriter.m; sourceTree = "<group>"; };
 		FBDFE5C619CC878B00FAFA90 /* LappyLogger */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LappyLogger; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBDFE5C919CC878B00FAFA90 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FBDFE5CC19CC878B00FAFA90 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -79,8 +79,8 @@
 		FB0D421219D1183800B70375 /* File Management */ = {
 			isa = PBXGroup;
 			children = (
-				FB0D421319D1185500B70375 /* LPLLogFileManager.h */,
-				FB0D421419D1185500B70375 /* LPLLogFileManager.m */,
+				FB75747E19DE775900CD62DB /* LPLLogFileWriter.h */,
+				FB75747F19DE775900CD62DB /* LPLLogFileWriter.m */,
 				FB75747319DDA56E00CD62DB /* LPLLogFileReader.h */,
 				FB75747419DDA56E00CD62DB /* LPLLogFileReader.m */,
 				FB75747619DDA5AF00CD62DB /* LPLLogFileHeader.h */,
@@ -224,10 +224,10 @@
 			files = (
 				FB75747D19DE5F6300CD62DB /* LPLLogDataPoint.m in Sources */,
 				FB75747219DDA15F00CD62DB /* LPLBatteryPercentageDataTranslator.m in Sources */,
+				FB75748019DE775900CD62DB /* LPLLogFileWriter.m in Sources */,
 				FB75747B19DDAC2B00CD62DB /* LPLLogFileHeader.m in Sources */,
 				FB2783FE19CFE7D600F2D16B /* LPLLappyLogger.m in Sources */,
 				FB75747519DDA56E00CD62DB /* LPLLogFileReader.m in Sources */,
-				FB0D421519D1185500B70375 /* LPLLogFileManager.m in Sources */,
 				FB0D421919D1296600B70375 /* LPLConfigManager.m in Sources */,
 				FB27840719CFE97D00F2D16B /* LPLDataSource.m in Sources */,
 				FB27840519CFE93200F2D16B /* LPLBatteryPercentageDataSource.m in Sources */,

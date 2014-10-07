@@ -14,6 +14,10 @@
 
 - (NSData*)translateObjectToData:(id)objectToTranslate
 {
+    if(![objectToTranslate isKindOfClass:[NSNumber class]]) {
+        return nil;
+    }
+    
     char batteryPercentage = [objectToTranslate charValue];
     return [NSData dataWithBytes:&batteryPercentage length:[self dataLengthInBytes]];
 }

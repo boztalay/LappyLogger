@@ -7,7 +7,53 @@
 //
 
 #import "LPLLogFileWriter.h"
+#import "LPLLogFileReader.h"
 
 @implementation LPLLogFileWriter
+
+- (id)initWithFileName:(NSString*)fileName
+     andDataSourceName:(NSString*)dataSourceName
+     andDataTranslator:(id<LPLDataTranslator>)dataTranslator
+{
+    self = [super init];
+    if(self) {
+        self.dataTranslator = dataTranslator;
+        
+        LPLLogFileReader* logFileReader = [[LPLLogFileReader alloc] initWithFileName:fileName andDataTranslator:self.dataTranslator];
+        if(logFileReader == nil) {
+            return nil;
+        }
+        
+        if(![logFileReader.logFileHeader.dataSourceName isEqualToString:dataSourceName] || logFileReader.logFileHeader.dataPointLength != [self.dataTranslator dataLengthInBytes]) {
+            return nil;
+        }
+        
+        self.filePath = logFileReader.filePath;
+    }
+    return self;
+}
+
+- (BOOL)appendDataPointAndReturnSuccess:(id)dataToWrite
+{
+    CFAbsoluteTime timestamp = CFAbsoluteTimeGetCurrent();
+    unsigned int timestampToWrite = (unsigned int)timestamp;
+    
+    LPLLogDataPoint* dataPointToWrite = [LPLLogDataPoint dataPointFromTimestamp:timestampToWrite andData:dataToWrite withDataTranslator:self.dataTranslator];
+    if(dataPointToWrite == nil) {
+        return NO;
+    }
+    
+    @try {
+        NSFileHandle* fileHandle = [NSFileHandle fileHandleForWritingAtPath:self.filePath];
+        [fileHandle seekToEndOfFile];
+        [fileHandle writeData:dataPointToWrite.rawData];
+        [fileHandle closeFile];
+    } @catch(NSException* e) {
+        NSLog(@"Error writing to the file: %@", e);
+        return NO;
+    }
+    
+    return YES;
+}
 
 @end

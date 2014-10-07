@@ -83,6 +83,20 @@
     }
     
     self.dataPoints = self.unvalidatedDataPoints;
+    return [self validateDataPointTimestamps];
+}
+
+- (BOOL)validateDataPointTimestamps
+{
+    unsigned int lastTimestamp = 0;
+    
+    for(LPLLogDataPoint* dataPoint in self.dataPoints) {
+        if(dataPoint.timestamp < lastTimestamp) {
+            return NO;
+        }
+
+        lastTimestamp = dataPoint.timestamp;
+    }
     
     return YES;
 }
