@@ -9,6 +9,8 @@
 #import "LPLLogFileWriter.h"
 #import "LPLLogFileReader.h"
 
+#define kLoggingPrefix @"LPLConfigManager"
+
 @implementation LPLLogFileWriter
 
 - (id)initWithFileName:(NSString*)fileName
@@ -49,7 +51,7 @@
         [fileHandle writeData:dataPointToWrite.rawData];
         [fileHandle closeFile];
     } @catch(NSException* e) {
-        NSLog(@"Error writing to the file: %@", e);
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Error writing to the file: %@", e];
         return NO;
     }
     

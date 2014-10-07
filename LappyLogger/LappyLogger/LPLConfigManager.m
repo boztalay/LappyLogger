@@ -8,6 +8,8 @@
 
 #import "LPLConfigManager.h"
 
+#define kLoggingPrefix @"LPLConfigManager"
+
 #define kDotDirectoryName @".LappyLogger"
 #define kConfigPlistName @"config.plist"
 
@@ -46,17 +48,17 @@
 {
     BOOL doesDotDirectoryExist = [self createDirectoryIfNeeded:self.dotDirectoryPath];
     if(!doesDotDirectoryExist) {
-        NSLog(@"Dot directory doesn't exist!");
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Dot directory doesn't exist!"];
         return NO;
     }
-    NSLog(@"Dot directory does exist");
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Dot directory does exist"];
     
     BOOL didSucessfullyReadConfigPlist = [self readOrCreateConfigPlist];
     if(!didSucessfullyReadConfigPlist) {
-        NSLog(@"Config plist is bad!");
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Config plist is bad!"];
         return NO;
     }
-    NSLog(@"Config plist is good!");
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Config plist is good!"];
     
     return YES;
 }
@@ -68,15 +70,15 @@
                                                        isDirectory:&isDirectory];
 
     if(isDirectory) {
-        NSLog(@"Config plist was a directory? Deleting it");
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Config plist was a directory? Deleting it"];
         [[NSFileManager defaultManager] removeItemAtPath:self.configPlistPath error:NULL];
     }
 
     if(!exists || isDirectory) {
-        NSLog(@"Attempting to make a config plist with the default values");
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Attempting to make a config plist with the default values"];
         return [self createConfigPlistWithDefaultValues];
     } else {
-        NSLog(@"Reading in the config plist");
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Reading in the config plist"];
         return [self readConfigPlist];
     }
 }
@@ -88,10 +90,10 @@
     
     BOOL successfullyWroteConfigPlist = [defaultConfigValues writeToURL:[NSURL fileURLWithPath:self.configPlistPath] atomically:NO];
     if(!successfullyWroteConfigPlist) {
-        NSLog(@"Writing the config plist failed!");
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Writing the config plist failed!"];
         return NO;
     }
-    NSLog(@"Writing the config plist succeeded, processing the values");
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Writing the config plist succeeded, processing the values"];
     
     return [self processConfigValues:defaultConfigValues];
 }
@@ -100,10 +102,10 @@
 {
     NSDictionary* configValues = [[NSDictionary alloc] initWithContentsOfURL:[NSURL fileURLWithPath:self.configPlistPath]];
     if(configValues == nil) {
-        NSLog(@"Reading the config plist failed!");
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Reading the config plist failed!"];
         return NO;
     }
-    NSLog(@"Reading the config plist succeeded, processing the values");
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Reading the config plist succeeded, processing the values"];
     
     return [self processConfigValues:configValues];
 }
@@ -113,17 +115,17 @@
     self.configValues = configValues;
     
     if(!self.configValues[LPLConfigLogDataDirectoryKey] || !self.configValues[LPLConfigTimedDataSourceIntervalKey]) {
-        NSLog(@"Not all of the required fields are present in the config file!");
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Not all of the required fields are present in the config file!"];
         return NO;
     }
     
     BOOL doesLogDataDirectoryExist = [self createDirectoryIfNeeded:self.configValues[LPLConfigLogDataDirectoryKey]];
     if(!doesLogDataDirectoryExist) {
-        NSLog(@"Creating the log data directory failed!");
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Creating the log data directory failed!"];
         return NO;
     }
     
-    NSLog(@"Processing the config file values succeeded");
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Processing the config file values succeeded"];
     
     return YES;
 }
@@ -136,10 +138,10 @@
     BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:directoryPath
                                                        isDirectory:&isDirectory];
     if(exists && isDirectory) {
-        NSLog(@"Directory %@ already exists", directoryPath);
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Directory %@ already exists", directoryPath];
         return YES;
     } else {
-        NSLog(@"Attempting to create directory %@", directoryPath);
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Attempting to create directory %@", directoryPath];
         return [[NSFileManager defaultManager] createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:NULL];
     }
 }

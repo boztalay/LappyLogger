@@ -12,6 +12,8 @@
 #import <IOKit/ps/IOPowerSources.h>
 #import <IOKit/ps/IOPSKeys.h>
 
+#define kLoggingPrefix @"LPLBatteryPercentageDataSource"
+
 #define kLogDataFileName @"batteryPercentageLog.ll"
 #define kDataSourceName @"BatteryPercentage"
 #define kDataPointLength 1
@@ -37,13 +39,13 @@
 - (void)recordDataPoint
 {
     unsigned char batteryPercentage = (unsigned char)[self getBatteryPercentage];
-    NSLog(@"Battery percentage: %d", (int)batteryPercentage);
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Battery percentage: %d", (int)batteryPercentage];
     
     BOOL writeSuccess = [self.logFileWriter appendDataPointAndReturnSuccess:[NSNumber numberWithUnsignedChar:batteryPercentage]];
     if(!writeSuccess) {
-        NSLog(@"Couldn't append the latest datapoint to the log file!");
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't append the latest datapoint to the log file!"];
     } else {
-        NSLog(@"Successfully recorded the datapoint");
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully recorded the datapoint"];
     }
 }
 

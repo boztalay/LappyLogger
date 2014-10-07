@@ -10,8 +10,9 @@
 #import "LPLConfigManager.h"
 #import "LPLDataSource.h"
 #import "LPLBatteryPercentageDataSource.h"
+#import "LPLLogger.h"
 
-#define CAPTURE_INTERVAL_IN_SECONDS 60.0f
+#define kLoggingPrefix @"LPLLappyLogger"
 
 @implementation LPLLappyLogger
 
@@ -40,23 +41,23 @@
 
 - (void)start
 {
-    NSLog(@"Reading the configuration...");
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Reading the configuration..."];
     BOOL isConfigCorrect = [[LPLConfigManager sharedInstance] readConfigAndReturnSuccess];
     if(!isConfigCorrect) {
-        NSLog(@"Something's wrong with the configuration! Exiting.");
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Something's wrong with the configuration! Exiting."];
         return;
     }
-    NSLog(@"Configuration was good!");
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Configuration was good!"];
     
     LPLBatteryPercentageDataSource* batteryPercentageDataSource = [[LPLBatteryPercentageDataSource alloc] init];
     if(batteryPercentageDataSource != nil) {
-        NSLog(@"Created the battery percentage data source successfully");
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Created the battery percentage data source successfully"];
         [self.dataSources addObject:batteryPercentageDataSource];
     }
     
-    NSLog(@" ");
-    NSLog(@"Starting data recording");
-    NSLog(@" ");
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@" "];
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Starting data recording"];
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@" "];
     
     [self startRecording];
 }
@@ -67,7 +68,12 @@
 {
     [[NSProcessInfo processInfo] beginActivityWithOptions:NSActivityBackground reason:@"Needs to log measurements in the background"];
     
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:CAPTURE_INTERVAL_IN_SECONDS target:self selector:@selector(recordDataPoints) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:[[LPLConfigManager sharedInstance].configValues[LPLConfigTimedDataSourceIntervalKey] floatValue]
+                                                  target:self
+                                                selector:@selector(recordDataPoints)
+                                                userInfo:nil
+                                                 repeats:YES];
+    
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
     
     [self recordDataPoints];
