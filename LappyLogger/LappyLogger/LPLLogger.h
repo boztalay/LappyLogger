@@ -12,7 +12,12 @@
     NSUInteger currentIndent;
 }
 
+@property (strong, nonatomic) NSString* filePath;
+@property (strong, nonatomic) NSFileHandle* fileHandle;
+@property (nonatomic) dispatch_queue_t logFileWritingQueue;
+
 + (LPLLogger*)sharedInstance;
+- (id)initWithFileName:(NSString*)fileName;
 
 - (void)logFromClass:(NSString*)className withMessage:(NSString*)message, ...;
 

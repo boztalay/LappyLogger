@@ -8,6 +8,7 @@
 
 #import "LPLLogFileWriter.h"
 #import "LPLLogFileReader.h"
+#import "LPLLogger.h"
 
 #define kLoggingPrefix @"LPLConfigManager"
 

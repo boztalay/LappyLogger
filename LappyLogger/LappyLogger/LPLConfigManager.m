@@ -7,6 +7,7 @@
 //
 
 #import "LPLConfigManager.h"
+#import "LPLLogger.h"
 
 #define kLoggingPrefix @"LPLConfigManager"
 
