@@ -139,10 +139,8 @@
     BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:directoryPath
                                                        isDirectory:&isDirectory];
     if(exists && isDirectory) {
-        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Directory %@ already exists", directoryPath];
         return YES;
     } else {
-        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Attempting to create directory %@", directoryPath];
         return [[NSFileManager defaultManager] createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:NULL];
     }
 }

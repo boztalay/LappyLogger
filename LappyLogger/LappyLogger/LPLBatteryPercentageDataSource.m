@@ -25,24 +25,41 @@
 {
     self = [super init];
     if(self) {
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Creating the battery percentage data source..."];
+        
         self.dataTranslator = [[LPLBatteryPercentageDataTranslator alloc] init];
         
+        [[LPLLogger sharedInstance] incrementIndent];
         self.logFileWriter = [[LPLLogFileWriter alloc] initWithFileName:kLogDataFileName
                                                       andDataSourceName:kDataSourceName
                                                       andDataTranslator:self.dataTranslator];
+        [[LPLLogger sharedInstance] decrementIndent];
+        
         if(self.logFileWriter == nil) {
             return nil;
+            [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't create the data source, making the file writer failed!"];
         }
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully created the data source"];
     }
     return self;
 }
 
 - (void)recordDataPoint
 {
-    unsigned char batteryPercentage = (unsigned char)[self getBatteryPercentage];
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Recording the battery percentage data point..."];
+    
+    CGFloat batteryPercentage = [self getBatteryPercentage];
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Battery percentage: %d", (int)batteryPercentage];
     
-    BOOL writeSuccess = [self.logFileWriter appendDataPointAndReturnSuccess:[NSNumber numberWithUnsignedChar:batteryPercentage]];
+    if(batteryPercentage < 0.0f) {
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Getting the battery percentage failed!"];
+        return;
+    }
+    
+    [[LPLLogger sharedInstance] incrementIndent];
+    BOOL writeSuccess = [self.logFileWriter appendDataPointAndReturnSuccess:[NSNumber numberWithUnsignedChar:(unsigned char)batteryPercentage]];
+    [[LPLLogger sharedInstance] decrementIndent];
+    
     if(!writeSuccess) {
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't append the latest datapoint to the log file!"];
     } else {

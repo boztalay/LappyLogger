@@ -9,6 +9,9 @@
 #import "LPLLogFileReader.h"
 #import "LPLConfigManager.h"
 #import "LPLLogDataPoint.h"
+#import "LPLLogger.h"
+
+#define kLoggingPrefix @"LPLLogFileReader"
 
 @interface LPLLogFileReader()
 
@@ -25,12 +28,19 @@
         self.dataTranslator = dataTranslator;
         self.logFileHeader = [[LPLLogFileHeader alloc] init];
         self.unvalidatedDataPoints = [[NSMutableArray alloc] init];
+        self.filePath = [[LPLConfigManager sharedInstance].configValues[LPLConfigLogDataDirectoryKey] stringByAppendingPathComponent:fileName];
+        
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Reading and validating the file at %@", self.filePath];
         
         BOOL isFileValid = [self readAndValidateFile:fileName];
         if(!isFileValid) {
+            [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Failed to read the file"];
+            
             [self.unvalidatedDataPoints removeAllObjects];
             return nil;
         }
+        
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully read the file"];
     }
     return self;
 }
@@ -38,27 +48,30 @@
 - (BOOL)readAndValidateFile:(NSString*)fileName
 {
     // Generate the file path and check if the file exists
-    self.filePath = [[LPLConfigManager sharedInstance].configValues[LPLConfigLogDataDirectoryKey] stringByAppendingPathComponent:fileName];
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:self.filePath isDirectory:NULL];
     if(!fileExists) {
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't read the file, it doesn't exist!"];
         return NO;
     }
     
     // Try to read the file in
     NSData* fileContents = [NSData dataWithContentsOfFile:self.filePath];
     if(fileContents == nil) {
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't read the file"];
         return NO;
     }
     
     // Try to read the file's header
     self.logFileHeader = [LPLLogFileHeader logFileHeaderFromFileContents:fileContents];
     if(self.logFileHeader == nil) {
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Reading the file's header failed"];
         return NO;
     }
     
     // Try to read the file's data points
     BOOL couldReadDataPoints = [self readDataPointsFromFile:(NSData*)fileContents startingAt:(NSUInteger)self.logFileHeader.rawData.length];
     if(!couldReadDataPoints) {
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Reading the file's data points failed"];
         return NO;
     }
     
@@ -74,6 +87,7 @@
                                                              withDataTranslator:self.dataTranslator];
         
         if(dataPoint == nil) {
+            [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't read in data point at byte %ld", currentIndex];
             return NO;
         }
         
@@ -92,6 +106,7 @@
     
     for(LPLLogDataPoint* dataPoint in self.dataPoints) {
         if(dataPoint.timestamp < lastTimestamp) {
+            [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"The data points' timestamps are out of order"];
             return NO;
         }
 

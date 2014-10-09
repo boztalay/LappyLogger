@@ -10,7 +10,7 @@
 #import "LPLLogFileReader.h"
 #import "LPLLogger.h"
 
-#define kLoggingPrefix @"LPLConfigManager"
+#define kLoggingPrefix @"LPLLogFileWriter"
 
 @implementation LPLLogFileWriter
 
@@ -22,15 +22,23 @@
     if(self) {
         self.dataTranslator = dataTranslator;
         
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Reading the file..."];
+        
+        [[LPLLogger sharedInstance] incrementIndent];
         LPLLogFileReader* logFileReader = [[LPLLogFileReader alloc] initWithFileName:fileName andDataTranslator:self.dataTranslator];
+        [[LPLLogger sharedInstance] decrementIndent];
+        
         if(logFileReader == nil) {
+            [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Failed to read the file!"];
             return nil;
         }
         
         if(![logFileReader.logFileHeader.dataSourceName isEqualToString:dataSourceName] || logFileReader.logFileHeader.dataPointLength != [self.dataTranslator dataLengthInBytes]) {
+            [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"The files header doesn't match the given parameters!"];
             return nil;
         }
         
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully read the file"];
         self.filePath = logFileReader.filePath;
     }
     return self;
@@ -38,11 +46,14 @@
 
 - (BOOL)appendDataPointAndReturnSuccess:(id)dataToWrite
 {
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Appending new data point..."];
+    
     CFAbsoluteTime timestamp = CFAbsoluteTimeGetCurrent();
     unsigned int timestampToWrite = (unsigned int)timestamp;
     
     LPLLogDataPoint* dataPointToWrite = [LPLLogDataPoint dataPointFromTimestamp:timestampToWrite andData:dataToWrite withDataTranslator:self.dataTranslator];
     if(dataPointToWrite == nil) {
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't create the data point!"];
         return NO;
     }
     
@@ -56,6 +67,7 @@
         return NO;
     }
     
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully appended the data point"];
     return YES;
 }
 

@@ -42,19 +42,25 @@
 - (void)start
 {
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Reading the configuration..."];
+    
+    [[LPLLogger sharedInstance] incrementIndent];
     BOOL isConfigCorrect = [[LPLConfigManager sharedInstance] readConfigAndReturnSuccess];
+    [[LPLLogger sharedInstance] decrementIndent];
+    
     if(!isConfigCorrect) {
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Something's wrong with the configuration! Exiting."];
         return;
     }
-    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Configuration was good!"];
+    
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Configuration was good! Creating the data sources..."];
+    [[LPLLogger sharedInstance] incrementIndent];
     
     LPLBatteryPercentageDataSource* batteryPercentageDataSource = [[LPLBatteryPercentageDataSource alloc] init];
     if(batteryPercentageDataSource != nil) {
-        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Created the battery percentage data source successfully"];
         [self.dataSources addObject:batteryPercentageDataSource];
     }
     
+    [[LPLLogger sharedInstance] decrementIndent];
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@" "];
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Starting data recording"];
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@" "];
@@ -81,9 +87,15 @@
 
 - (void)recordDataPoints
 {
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Recording data points..."];
+    [[LPLLogger sharedInstance] incrementIndent];
+    
     for(LPLDataSource* dataSource in self.dataSources) {
         [dataSource recordDataPoint];
     }
+    
+    [[LPLLogger sharedInstance] decrementIndent];
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Finished recording data points"];
 }
 
 @end
