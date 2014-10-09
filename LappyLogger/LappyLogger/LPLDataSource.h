@@ -15,6 +15,9 @@
 @property (strong, nonatomic) LPLLogFileWriter* logFileWriter;
 @property (strong, nonatomic) id<LPLDataTranslator> dataTranslator;
 
+- (BOOL)initializeDataSourceWithName:(NSString*)dataSourceName
+                      andLogFileName:(NSString*)logFileName
+                   andDataTranslator:(id<LPLDataTranslator>)dataTranslator;
 - (void)recordDataPoint;
 
 @end

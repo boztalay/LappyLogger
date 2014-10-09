@@ -17,7 +17,6 @@
 
 #define kLogDataFileName @"batteryPercentageLog.ll"
 #define kDataSourceName @"BatteryPercentage"
-#define kDataPointLength 1
 
 @implementation LPLBatteryPercentageDataSource
 
@@ -25,22 +24,12 @@
 {
     self = [super init];
     if(self) {
-        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Creating the battery percentage data source..."];
-        
-        self.dataTranslator = [[LPLBatteryPercentageDataTranslator alloc] init];
-        
-        [[LPLLogger sharedInstance] incrementIndent];
-        self.logFileWriter = [[LPLLogFileWriter alloc] initWithFileName:kLogDataFileName
-                                                      andDataSourceName:kDataSourceName
-                                                      andDataTranslator:self.dataTranslator];
-        [[LPLLogger sharedInstance] decrementIndent];
-        
-        if(self.logFileWriter == nil) {
-            [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't create the data source, making the file writer failed!"];
+        BOOL initializationSucceeded = [self initializeDataSourceWithName:kDataSourceName
+                                                           andLogFileName:kLogDataFileName
+                                                        andDataTranslator:[[LPLBatteryPercentageDataTranslator alloc] init]];
+        if(!initializationSucceeded) {
             return nil;
         }
-        
-        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully created the data source"];
     }
     return self;
 }
