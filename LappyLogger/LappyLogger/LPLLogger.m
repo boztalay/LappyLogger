@@ -52,7 +52,7 @@
 {
     NSDate* today= [NSDate date];
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"YY-MM-dd HH:mm:ss"];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     NSString *dateString = [dateFormatter stringFromDate:today];
     
     [self logMessageToFile:[NSString stringWithFormat:@"\n%@\n", dateString]];
