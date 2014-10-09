@@ -67,7 +67,7 @@
         return -1.0f;
     }
     
-    const void *powerSourceValue = (CFStringRef)CFDictionaryGetValue(powerSource, CFSTR(kIOPSNameKey));
+    const void *powerSourceValue;
     
     NSInteger currentLevel = 0;
     NSInteger capacity = 0;

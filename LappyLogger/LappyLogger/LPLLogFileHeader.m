@@ -77,7 +77,7 @@
     }
     
     NSMutableData* logFileHeaderRawData = [[NSMutableData alloc] init];
-    [logFileHeaderRawData appendBytes:kMagicNumber length:kMagicNumberLength];
+    [logFileHeaderRawData appendBytes:[kMagicNumber cStringUsingEncoding:NSUTF8StringEncoding] length:kMagicNumberLength];
     char versionNumber = kVersionNumber;
     [logFileHeaderRawData appendBytes:&versionNumber length:kVersionNumberLength];
     [logFileHeaderRawData appendBytes:&dataPointLength length:kDataPointLengthLength];
