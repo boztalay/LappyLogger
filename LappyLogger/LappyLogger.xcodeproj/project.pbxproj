@@ -70,6 +70,7 @@
 		FB862B9719E65BD500BEEE32 /* LPLACConnectionStatusDataTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLACConnectionStatusDataTranslator.m; sourceTree = "<group>"; };
 		FB8AFE8919E387DC001C3B20 /* LPLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLLogger.h; sourceTree = "<group>"; };
 		FB8AFE8A19E387DC001C3B20 /* LPLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLLogger.m; sourceTree = "<group>"; };
+		FBB67AAD19E66E9B00D1591A /* com.boztalay.LappyLogger.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = com.boztalay.LappyLogger.plist; sourceTree = "<group>"; };
 		FBDFE5C619CC878B00FAFA90 /* LappyLogger */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LappyLogger; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBDFE5C919CC878B00FAFA90 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FBDFE5CC19CC878B00FAFA90 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -218,6 +219,7 @@
 				FBDFE5CC19CC878B00FAFA90 /* main.m */,
 				FB2783FC19CFE7D600F2D16B /* LPLLappyLogger.h */,
 				FB2783FD19CFE7D600F2D16B /* LPLLappyLogger.m */,
+				FBB67AAD19E66E9B00D1591A /* com.boztalay.LappyLogger.plist */,
 				FB0D421619D1295400B70375 /* Config */,
 				FB2783FF19CFE85800F2D16B /* Data Sources */,
 				FB0D421219D1183800B70375 /* File Management */,
