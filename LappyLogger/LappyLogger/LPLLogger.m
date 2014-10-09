@@ -89,8 +89,12 @@
     dispatch_async(self.logFileWritingQueue, ^{
         NSString* messageWithNewline = [message stringByAppendingString:@"\n"];
         
-        [self.fileHandle seekToEndOfFile];
-        [self.fileHandle writeData:[messageWithNewline dataUsingEncoding:NSUTF8StringEncoding]];
+        @try {
+            [self.fileHandle seekToEndOfFile];
+            [self.fileHandle writeData:[messageWithNewline dataUsingEncoding:NSUTF8StringEncoding]];
+        } @catch(NSException* e) {
+            
+        }
     });
 }
 
