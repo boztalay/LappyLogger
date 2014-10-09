@@ -10,4 +10,6 @@
 
 @interface LPLBatteryLifeDataSource : LPLDataSource
 
+@property (nonatomic) NSInteger lastBatteryLife;
+
 @end

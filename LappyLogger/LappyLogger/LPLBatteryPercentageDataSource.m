@@ -30,6 +30,8 @@
         if(!initializationSucceeded) {
             return nil;
         }
+        
+        self.lastBatteryPercentage = -1.0f;
     }
     return self;
 }
@@ -46,14 +48,21 @@
         return;
     }
     
-    [[LPLLogger sharedInstance] incrementIndent];
-    BOOL writeSuccess = [self.logFileWriter appendDataPointAndReturnSuccess:[NSNumber numberWithUnsignedChar:(unsigned char)batteryPercentage]];
-    [[LPLLogger sharedInstance] decrementIndent];
-    
-    if(!writeSuccess) {
-        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't append the latest datapoint to the log file!"];
+    if(self.lastBatteryPercentage < 0.0f || self.lastBatteryPercentage != batteryPercentage) {
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Battery percentage changed, recording it"];
+        
+        [[LPLLogger sharedInstance] incrementIndent];
+        BOOL writeSuccess = [self.logFileWriter appendDataPointAndReturnSuccess:[NSNumber numberWithUnsignedChar:(unsigned char)batteryPercentage]];
+        [[LPLLogger sharedInstance] decrementIndent];
+        
+        if(!writeSuccess) {
+            [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't append the latest datapoint to the log file!"];
+        } else {
+            self.lastBatteryPercentage = batteryPercentage;
+            [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully recorded the datapoint"];
+        }
     } else {
-        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully recorded the datapoint"];
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Battery percentage hasn't changed, not recording it"];
     }
 }
 

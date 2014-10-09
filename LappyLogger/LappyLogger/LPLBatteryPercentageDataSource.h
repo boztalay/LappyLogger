@@ -11,4 +11,6 @@
 
 @interface LPLBatteryPercentageDataSource : LPLDataSource
 
+@property (nonatomic) CGFloat lastBatteryPercentage;
+
 @end
