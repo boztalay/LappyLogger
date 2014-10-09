@@ -18,6 +18,8 @@
 		FB75748019DE775900CD62DB /* LPLLogFileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = FB75747F19DE775900CD62DB /* LPLLogFileWriter.m */; };
 		FB862B8F19E6422D00BEEE32 /* LPLBatteryLifeDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FB862B8E19E6422D00BEEE32 /* LPLBatteryLifeDataSource.m */; };
 		FB862B9219E6424200BEEE32 /* LPLBatteryLifeDataTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB862B9119E6424200BEEE32 /* LPLBatteryLifeDataTranslator.m */; };
+		FB862B9519E65BB600BEEE32 /* LPLACConnectionStatusDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FB862B9419E65BB600BEEE32 /* LPLACConnectionStatusDataSource.m */; };
+		FB862B9819E65BD500BEEE32 /* LPLACConnectionStatusDataTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB862B9719E65BD500BEEE32 /* LPLACConnectionStatusDataTranslator.m */; };
 		FB8AFE8B19E387DC001C3B20 /* LPLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8AFE8A19E387DC001C3B20 /* LPLLogger.m */; };
 		FBDFE5CA19CC878B00FAFA90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBDFE5C919CC878B00FAFA90 /* Foundation.framework */; };
 		FBDFE5CD19CC878B00FAFA90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDFE5CC19CC878B00FAFA90 /* main.m */; };
@@ -62,6 +64,10 @@
 		FB862B8E19E6422D00BEEE32 /* LPLBatteryLifeDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLBatteryLifeDataSource.m; sourceTree = "<group>"; };
 		FB862B9019E6424200BEEE32 /* LPLBatteryLifeDataTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLBatteryLifeDataTranslator.h; sourceTree = "<group>"; };
 		FB862B9119E6424200BEEE32 /* LPLBatteryLifeDataTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLBatteryLifeDataTranslator.m; sourceTree = "<group>"; };
+		FB862B9319E65BB600BEEE32 /* LPLACConnectionStatusDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLACConnectionStatusDataSource.h; sourceTree = "<group>"; };
+		FB862B9419E65BB600BEEE32 /* LPLACConnectionStatusDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLACConnectionStatusDataSource.m; sourceTree = "<group>"; };
+		FB862B9619E65BD500BEEE32 /* LPLACConnectionStatusDataTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLACConnectionStatusDataTranslator.h; sourceTree = "<group>"; };
+		FB862B9719E65BD500BEEE32 /* LPLACConnectionStatusDataTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLACConnectionStatusDataTranslator.m; sourceTree = "<group>"; };
 		FB8AFE8919E387DC001C3B20 /* LPLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLLogger.h; sourceTree = "<group>"; };
 		FB8AFE8A19E387DC001C3B20 /* LPLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLLogger.m; sourceTree = "<group>"; };
 		FBDFE5C619CC878B00FAFA90 /* LappyLogger */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LappyLogger; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +155,10 @@
 		FB862B8A19E641DB00BEEE32 /* AC Connection Status */ = {
 			isa = PBXGroup;
 			children = (
+				FB862B9319E65BB600BEEE32 /* LPLACConnectionStatusDataSource.h */,
+				FB862B9419E65BB600BEEE32 /* LPLACConnectionStatusDataSource.m */,
+				FB862B9619E65BD500BEEE32 /* LPLACConnectionStatusDataTranslator.h */,
+				FB862B9719E65BD500BEEE32 /* LPLACConnectionStatusDataTranslator.m */,
 			);
 			name = "AC Connection Status";
 			sourceTree = "<group>";
@@ -282,6 +292,8 @@
 				FB862B9219E6424200BEEE32 /* LPLBatteryLifeDataTranslator.m in Sources */,
 				FB75748019DE775900CD62DB /* LPLLogFileWriter.m in Sources */,
 				FB862B8F19E6422D00BEEE32 /* LPLBatteryLifeDataSource.m in Sources */,
+				FB862B9519E65BB600BEEE32 /* LPLACConnectionStatusDataSource.m in Sources */,
+				FB862B9819E65BD500BEEE32 /* LPLACConnectionStatusDataTranslator.m in Sources */,
 				FB75747B19DDAC2B00CD62DB /* LPLLogFileHeader.m in Sources */,
 				FB2783FE19CFE7D600F2D16B /* LPLLappyLogger.m in Sources */,
 				FB75747519DDA56E00CD62DB /* LPLLogFileReader.m in Sources */,

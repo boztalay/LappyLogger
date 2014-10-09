@@ -12,6 +12,7 @@
 #import "LPLDataSource.h"
 #import "LPLBatteryPercentageDataSource.h"
 #import "LPLBatteryLifeDataSource.h"
+#import "LPLACConnectionStatusDataSource.h"
 
 #define kLoggingPrefix @"LPLLappyLogger"
 
@@ -64,6 +65,11 @@
     LPLBatteryLifeDataSource* batteryLifeDataSource = [[LPLBatteryLifeDataSource alloc] init];
     if(batteryLifeDataSource != nil) {
         [self.dataSources addObject:batteryLifeDataSource];
+    }
+
+    LPLACConnectionStatusDataSource* acConnectionStatusDataSource = [[LPLACConnectionStatusDataSource alloc] init];
+    if(acConnectionStatusDataSource != nil) {
+        [self.dataSources addObject:acConnectionStatusDataSource];
     }
     
     [[LPLLogger sharedInstance] decrementIndent];
