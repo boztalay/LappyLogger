@@ -36,9 +36,10 @@
         [[LPLLogger sharedInstance] decrementIndent];
         
         if(self.logFileWriter == nil) {
-            return nil;
             [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't create the data source, making the file writer failed!"];
+            return nil;
         }
+        
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully created the data source"];
     }
     return self;

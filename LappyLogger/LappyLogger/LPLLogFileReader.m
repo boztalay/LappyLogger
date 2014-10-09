@@ -96,7 +96,7 @@
         currentIndex += dataPoint.rawData.length;
     }
     
-    self.dataPoints = self.unvalidatedDataPoints;
+    self.dataPoints = [NSArray arrayWithArray:self.unvalidatedDataPoints];
     return [self validateDataPointTimestamps];
 }
 

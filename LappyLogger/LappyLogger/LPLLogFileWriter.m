@@ -8,6 +8,8 @@
 
 #import "LPLLogFileWriter.h"
 #import "LPLLogFileReader.h"
+#import "LPLLogFileHeader.h"
+#import "LPLConfigManager.h"
 #import "LPLLogger.h"
 
 #define kLoggingPrefix @"LPLLogFileWriter"
@@ -21,25 +23,32 @@
     self = [super init];
     if(self) {
         self.dataTranslator = dataTranslator;
+        self.filePath = [[LPLConfigManager sharedInstance].configValues[LPLConfigLogDataDirectoryKey] stringByAppendingPathComponent:fileName];
         
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Reading the file..."];
-        
         [[LPLLogger sharedInstance] incrementIndent];
+        
         LPLLogFileReader* logFileReader = [[LPLLogFileReader alloc] initWithFileName:fileName andDataTranslator:self.dataTranslator];
+        
         [[LPLLogger sharedInstance] decrementIndent];
         
         if(logFileReader == nil) {
-            [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Failed to read the file!"];
-            return nil;
+            [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Failed to read the file, attempting to create a new one..."];
+            
+            LPLLogFileHeader* logFileHeader = [LPLLogFileHeader logFileHeaderFromDataPointLength:[self.dataTranslator dataLengthInBytes] andDataSourceName:dataSourceName];
+            BOOL couldWriteNewFile = [[logFileHeader rawData] writeToFile:self.filePath atomically:YES];
+            if(!couldWriteNewFile) {
+                [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Failed to create a new file!"];
+                return nil;
+            }
+        } else {
+            if(![logFileReader.logFileHeader.dataSourceName isEqualToString:dataSourceName] || logFileReader.logFileHeader.dataPointLength != [self.dataTranslator dataLengthInBytes]) {
+                [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"The file's header doesn't match the given parameters!"];
+                return nil;
+            }
         }
         
-        if(![logFileReader.logFileHeader.dataSourceName isEqualToString:dataSourceName] || logFileReader.logFileHeader.dataPointLength != [self.dataTranslator dataLengthInBytes]) {
-            [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"The files header doesn't match the given parameters!"];
-            return nil;
-        }
-        
-        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully read the file"];
-        self.filePath = logFileReader.filePath;
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully initialized"];
     }
     return self;
 }
