@@ -70,7 +70,7 @@
     va_list args;
     va_start(args, message);
     
-    NSString* indents = [@"" stringByPaddingToLength:currentIndent + 1 withString:@"-" startingAtIndex:0];
+    NSString* indents = [@"" stringByPaddingToLength:(currentIndent + 1) * 2 withString:@"-" startingAtIndex:0];
     NSString* fullMessage = [NSString stringWithFormat:@"%@ %@: %@", indents, className, message];
     NSString* expandedMessage = [[NSString alloc] initWithFormat:fullMessage arguments:args];
     NSLog(@"%@", expandedMessage);

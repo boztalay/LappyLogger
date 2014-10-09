@@ -117,7 +117,7 @@
 				FB75746E19DDA07900CD62DB /* LPLDataTranslator.h */,
 				FB75746F19DDA13500CD62DB /* Battery Percentage */,
 				FB862B8919E641BB00BEEE32 /* Battery Life */,
-				FB862B8A19E641DB00BEEE32 /* Charging Status */,
+				FB862B8A19E641DB00BEEE32 /* AC Connection Status */,
 				FB862B8B19E641EE00BEEE32 /* Keystrokes */,
 				FB862B8C19E641F500BEEE32 /* Mouse Clicks */,
 			);
@@ -146,11 +146,11 @@
 			name = "Battery Life";
 			sourceTree = "<group>";
 		};
-		FB862B8A19E641DB00BEEE32 /* Charging Status */ = {
+		FB862B8A19E641DB00BEEE32 /* AC Connection Status */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "Charging Status";
+			name = "AC Connection Status";
 			sourceTree = "<group>";
 		};
 		FB862B8B19E641EE00BEEE32 /* Keystrokes */ = {
