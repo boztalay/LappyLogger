@@ -13,6 +13,7 @@
 #import "LPLBatteryPercentageDataSource.h"
 #import "LPLBatteryLifeDataSource.h"
 #import "LPLACConnectionStatusDataSource.h"
+#import "LPLKeystrokesDataSource.h"
 
 #define kLoggingPrefix @"LPLLappyLogger"
 
@@ -70,6 +71,11 @@
     LPLACConnectionStatusDataSource* acConnectionStatusDataSource = [[LPLACConnectionStatusDataSource alloc] init];
     if(acConnectionStatusDataSource != nil) {
         [self.dataSources addObject:acConnectionStatusDataSource];
+    }
+
+    LPLKeystrokesDataSource* keystrokesDataSource = [[LPLKeystrokesDataSource alloc] init];
+    if(keystrokesDataSource != nil) {
+        [self.dataSources addObject:keystrokesDataSource];
     }
     
     [[LPLLogger sharedInstance] decrementIndent];

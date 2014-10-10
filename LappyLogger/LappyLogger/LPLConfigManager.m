@@ -8,6 +8,7 @@
 
 #import "LPLConfigManager.h"
 #import "LPLLogger.h"
+#include <SystemConfiguration/SystemConfiguration.h>
 
 #define kLoggingPrefix @"LPLConfigManager"
 
@@ -37,10 +38,37 @@
 {
     self = [super init];
     if(self) {
-        self.dotDirectoryPath = [[@"~" stringByAppendingPathComponent:kDotDirectoryName] stringByExpandingTildeInPath];
+        NSString* homeDirectory = [self getLoggedInUserHomeDirectory];
+        if(homeDirectory == nil) {
+            [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't get the current user's home directory, falling back on ~"];
+            homeDirectory = [@"~" stringByExpandingTildeInPath];
+        }
+        
+        self.dotDirectoryPath = [homeDirectory stringByAppendingPathComponent:kDotDirectoryName];
         self.configPlistPath = [self.dotDirectoryPath stringByAppendingPathComponent:kConfigPlistName];
     }
     return self;
+}
+
+- (NSString*)getLoggedInUserHomeDirectory
+{
+    SCDynamicStoreRef store;
+    CFStringRef name;
+    uid_t uid;
+    
+    store = SCDynamicStoreCreate(NULL, CFSTR("GetConsoleUser"), NULL, NULL);
+    if(store == NULL) {
+        return nil;
+    }
+    
+    name = SCDynamicStoreCopyConsoleUser(store, &uid, NULL);
+    CFRelease(store);
+    
+    if(name == NULL) {
+        return nil;
+    } else {
+        return [@"/Users" stringByAppendingPathComponent:(__bridge NSString*)name];
+    }
 }
 
 #pragma mark - Reading the configuration
