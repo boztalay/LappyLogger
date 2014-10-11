@@ -15,7 +15,7 @@
 
 #define kLoggingPrefix @"LPLBatteryLifeDataSource"
 
-#define kLogDataFileName @"batteryLifeLog.ll"
+#define kLogDataFileName @"batteryLifeLog"
 #define kDataSourceName @"BatteryLife"
 
 @implementation LPLBatteryLifeDataSource

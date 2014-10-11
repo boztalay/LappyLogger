@@ -12,7 +12,7 @@
 
 #define kLoggingPrefix @"LPLStartUpsDataSource"
 
-#define kLogDataFileName @"startUps.ll"
+#define kLogDataFileName @"startUps"
 #define kDataSourceName @"StartUps"
 
 @implementation LPLStartUpsDataSource

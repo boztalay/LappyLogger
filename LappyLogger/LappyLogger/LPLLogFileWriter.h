@@ -12,8 +12,11 @@
 
 @interface LPLLogFileWriter : NSObject
 
+@property (strong, nonatomic) NSString* dataSourceName;
 @property (strong, nonatomic) NSString* filePath;
+@property (strong, nonatomic) NSString* baseFileName;
 @property (strong, nonatomic) id<LPLDataTranslator> dataTranslator;
+@property (strong, nonatomic) NSDate* lastRecordingDate;
 
 - (id)initWithFileName:(NSString*)fileName
      andDataSourceName:(NSString*)dataSourceName

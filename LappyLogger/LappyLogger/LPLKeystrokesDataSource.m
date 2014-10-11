@@ -13,7 +13,7 @@
 
 #define kLoggingPrefix @"LPLKeystrokesDataSource"
 
-#define kLogDataFileName @"keystrokesLog.ll"
+#define kLogDataFileName @"keystrokesLog"
 #define kDataSourceName @"Keystrokes"
 
 static NSInteger keystrokesSinceLastRecord;

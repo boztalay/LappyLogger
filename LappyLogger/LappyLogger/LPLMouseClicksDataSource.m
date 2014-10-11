@@ -13,7 +13,7 @@
 
 #define kLoggingPrefix @"LPLMouseClicksDataSource"
 
-#define kLogDataFileName @"mouseClicksLog.ll"
+#define kLogDataFileName @"mouseClicksLog"
 #define kDataSourceName @"MouseClicks"
 
 static NSInteger mouseClicksSinceLastRecord;

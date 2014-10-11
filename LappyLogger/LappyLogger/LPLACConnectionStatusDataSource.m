@@ -15,7 +15,7 @@
 
 #define kLoggingPrefix @"LPLACConnectionStatusDataSource"
 
-#define kLogDataFileName @"acConnectionStatusLog.ll"
+#define kLogDataFileName @"acConnectionStatusLog"
 #define kDataSourceName @"ACConnectionStatus"
 
 @implementation LPLACConnectionStatusDataSource

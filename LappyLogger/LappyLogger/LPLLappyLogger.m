@@ -126,7 +126,7 @@
     [file closeFile];
     
     NSString* grepOutput = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSArray* grepLines = [grepOutput componentsSeparatedByString:@"\n"];
+    NSArray* grepLines = [grepOutput componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
     // If more than one LappyLogger process is running, we'll get at least 3 lines
     // (1 for this process, 1 for the other, and 1 empty newline because of componentsSeparated)

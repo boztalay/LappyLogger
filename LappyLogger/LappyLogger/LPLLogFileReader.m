@@ -7,7 +7,6 @@
 //
 
 #import "LPLLogFileReader.h"
-#import "LPLConfigManager.h"
 #import "LPLLogDataPoint.h"
 #import "LPLLogger.h"
 
@@ -21,18 +20,18 @@
 
 @implementation LPLLogFileReader
 
-- (id)initWithFileName:(NSString *)fileName andDataTranslator:(id<LPLDataTranslator>)dataTranslator
+- (id)initWithFilePath:(NSString *)filePath andDataTranslator:(id<LPLDataTranslator>)dataTranslator
 {
     self = [super init];
     if(self) {
         self.dataTranslator = dataTranslator;
         self.logFileHeader = [[LPLLogFileHeader alloc] init];
         self.unvalidatedDataPoints = [[NSMutableArray alloc] init];
-        self.filePath = [[LPLConfigManager sharedInstance].configValues[LPLConfigLogDataDirectoryKey] stringByAppendingPathComponent:fileName];
+        self.filePath = filePath;
         
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Reading and validating the file at %@", self.filePath];
         
-        BOOL isFileValid = [self readAndValidateFile:fileName];
+        BOOL isFileValid = [self readAndValidateFile];
         if(!isFileValid) {
             [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Failed to read the file"];
             
@@ -45,7 +44,7 @@
     return self;
 }
 
-- (BOOL)readAndValidateFile:(NSString*)fileName
+- (BOOL)readAndValidateFile
 {
     // Generate the file path and check if the file exists
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:self.filePath isDirectory:NULL];

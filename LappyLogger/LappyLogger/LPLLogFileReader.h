@@ -17,6 +17,6 @@
 @property (strong, nonatomic) LPLLogFileHeader* logFileHeader;
 @property (strong, nonatomic) NSArray* dataPoints;
 
-- (id)initWithFileName:(NSString*)fileName andDataTranslator:(id<LPLDataTranslator>)dataTranslator;
+- (id)initWithFilePath:(NSString*)filePath andDataTranslator:(id<LPLDataTranslator>)dataTranslator;
 
 @end

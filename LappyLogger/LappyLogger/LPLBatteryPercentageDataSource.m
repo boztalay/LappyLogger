@@ -15,7 +15,7 @@
 
 #define kLoggingPrefix @"LPLBatteryPercentageDataSource"
 
-#define kLogDataFileName @"batteryPercentageLog.ll"
+#define kLogDataFileName @"batteryPercentageLog"
 #define kDataSourceName @"BatteryPercentage"
 
 @implementation LPLBatteryPercentageDataSource
