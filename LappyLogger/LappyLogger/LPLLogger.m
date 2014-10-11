@@ -35,6 +35,7 @@
         self.filePath = [[LPLConfigManager sharedInstance].dotDirectoryPath stringByAppendingPathComponent:fileName];
         
         if(![[NSFileManager defaultManager] fileExistsAtPath:self.filePath]) {
+            [[NSFileManager defaultManager] createDirectoryAtPath:[LPLConfigManager sharedInstance].dotDirectoryPath withIntermediateDirectories:YES attributes:nil error:nil];
             [[NSFileManager defaultManager] createFileAtPath:self.filePath contents:nil attributes:nil];
         }
         

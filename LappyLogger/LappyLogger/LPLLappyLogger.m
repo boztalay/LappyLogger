@@ -14,6 +14,8 @@
 #import "LPLBatteryLifeDataSource.h"
 #import "LPLACConnectionStatusDataSource.h"
 #import "LPLKeystrokesDataSource.h"
+#import "LPLMouseClicksDataSource.h"
+#import "LPLStartUpsDataSource.h"
 
 #define kLoggingPrefix @"LPLLappyLogger"
 
@@ -44,8 +46,6 @@
 
 - (void)start
 {
-    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Reading the configuration..."];
-    
     [[LPLLogger sharedInstance] incrementIndent];
     BOOL isConfigCorrect = [[LPLConfigManager sharedInstance] readConfigAndReturnSuccess];
     [[LPLLogger sharedInstance] decrementIndent];
@@ -77,8 +77,19 @@
     if(keystrokesDataSource != nil) {
         [self.dataSources addObject:keystrokesDataSource];
     }
+
+    LPLMouseClicksDataSource* mouseClicksDataSource = [[LPLMouseClicksDataSource alloc] init];
+    if(mouseClicksDataSource != nil) {
+        [self.dataSources addObject:mouseClicksDataSource];
+    }
+    
+    LPLStartUpsDataSource* startUpsDataSource = [[LPLStartUpsDataSource alloc] init];
+    if(startUpsDataSource != nil) {
+        [startUpsDataSource recordDataPoint];
+    }
     
     [[LPLLogger sharedInstance] decrementIndent];
+    
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@" "];
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Starting data recording"];
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@" "];

@@ -11,6 +11,10 @@
 		FB2783FE19CFE7D600F2D16B /* LPLLappyLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FB2783FD19CFE7D600F2D16B /* LPLLappyLogger.m */; };
 		FB27840519CFE93200F2D16B /* LPLBatteryPercentageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FB27840419CFE93200F2D16B /* LPLBatteryPercentageDataSource.m */; };
 		FB27840719CFE97D00F2D16B /* LPLDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FB27840619CFE97D00F2D16B /* LPLDataSource.m */; };
+		FB43D2EC19E8E45200F081AD /* LPLMouseClicksDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FB43D2EB19E8E45200F081AD /* LPLMouseClicksDataSource.m */; };
+		FB43D2F219E8E46A00F081AD /* LPLMouseClicksDataTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB43D2F119E8E46A00F081AD /* LPLMouseClicksDataTranslator.m */; };
+		FB43D2F619E8EA4E00F081AD /* LPLStartUpsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FB43D2F519E8EA4E00F081AD /* LPLStartUpsDataSource.m */; };
+		FB43D2F919E8EA5B00F081AD /* LPLStartUpsDataTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB43D2F819E8EA5B00F081AD /* LPLStartUpsDataTranslator.m */; };
 		FB4AFB6219E85A700043BF61 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4AFB6119E85A700043BF61 /* main.m */; };
 		FB4AFB6519E85A700043BF61 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4AFB6419E85A700043BF61 /* AppDelegate.m */; };
 		FB4AFB6719E85A700043BF61 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB4AFB6619E85A700043BF61 /* Images.xcassets */; };
@@ -86,6 +90,14 @@
 		FB27840319CFE93200F2D16B /* LPLBatteryPercentageDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLBatteryPercentageDataSource.h; sourceTree = "<group>"; };
 		FB27840419CFE93200F2D16B /* LPLBatteryPercentageDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLBatteryPercentageDataSource.m; sourceTree = "<group>"; };
 		FB27840619CFE97D00F2D16B /* LPLDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLDataSource.m; sourceTree = "<group>"; };
+		FB43D2EA19E8E45200F081AD /* LPLMouseClicksDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLMouseClicksDataSource.h; sourceTree = "<group>"; };
+		FB43D2EB19E8E45200F081AD /* LPLMouseClicksDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLMouseClicksDataSource.m; sourceTree = "<group>"; };
+		FB43D2F019E8E46A00F081AD /* LPLMouseClicksDataTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLMouseClicksDataTranslator.h; sourceTree = "<group>"; };
+		FB43D2F119E8E46A00F081AD /* LPLMouseClicksDataTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLMouseClicksDataTranslator.m; sourceTree = "<group>"; };
+		FB43D2F419E8EA4E00F081AD /* LPLStartUpsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLStartUpsDataSource.h; sourceTree = "<group>"; };
+		FB43D2F519E8EA4E00F081AD /* LPLStartUpsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLStartUpsDataSource.m; sourceTree = "<group>"; };
+		FB43D2F719E8EA5B00F081AD /* LPLStartUpsDataTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLStartUpsDataTranslator.h; sourceTree = "<group>"; };
+		FB43D2F819E8EA5B00F081AD /* LPLStartUpsDataTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLStartUpsDataTranslator.m; sourceTree = "<group>"; };
 		FB4AFB5D19E85A6F0043BF61 /* LappyLoggerReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LappyLoggerReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4AFB6019E85A700043BF61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB4AFB6119E85A700043BF61 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -189,8 +201,20 @@
 				FB862B8A19E641DB00BEEE32 /* AC Connection Status */,
 				FB862B8B19E641EE00BEEE32 /* Keystrokes */,
 				FB862B8C19E641F500BEEE32 /* Mouse Clicks */,
+				FB43D2F319E8EA3000F081AD /* Start Ups */,
 			);
 			name = "Data Sources";
+			sourceTree = "<group>";
+		};
+		FB43D2F319E8EA3000F081AD /* Start Ups */ = {
+			isa = PBXGroup;
+			children = (
+				FB43D2F419E8EA4E00F081AD /* LPLStartUpsDataSource.h */,
+				FB43D2F519E8EA4E00F081AD /* LPLStartUpsDataSource.m */,
+				FB43D2F719E8EA5B00F081AD /* LPLStartUpsDataTranslator.h */,
+				FB43D2F819E8EA5B00F081AD /* LPLStartUpsDataTranslator.m */,
+			);
+			name = "Start Ups";
 			sourceTree = "<group>";
 		};
 		FB4AFB5E19E85A700043BF61 /* LappyLoggerReader */ = {
@@ -272,6 +296,10 @@
 		FB862B8C19E641F500BEEE32 /* Mouse Clicks */ = {
 			isa = PBXGroup;
 			children = (
+				FB43D2EA19E8E45200F081AD /* LPLMouseClicksDataSource.h */,
+				FB43D2EB19E8E45200F081AD /* LPLMouseClicksDataSource.m */,
+				FB43D2F019E8E46A00F081AD /* LPLMouseClicksDataTranslator.h */,
+				FB43D2F119E8E46A00F081AD /* LPLMouseClicksDataTranslator.m */,
 			);
 			name = "Mouse Clicks";
 			sourceTree = "<group>";
@@ -467,8 +495,10 @@
 				FB862B9219E6424200BEEE32 /* LPLBatteryLifeDataTranslator.m in Sources */,
 				FB75748019DE775900CD62DB /* LPLLogFileWriter.m in Sources */,
 				FB862B8F19E6422D00BEEE32 /* LPLBatteryLifeDataSource.m in Sources */,
+				FB43D2F219E8E46A00F081AD /* LPLMouseClicksDataTranslator.m in Sources */,
 				FB862B9519E65BB600BEEE32 /* LPLACConnectionStatusDataSource.m in Sources */,
 				FB862B9819E65BD500BEEE32 /* LPLACConnectionStatusDataTranslator.m in Sources */,
+				FB43D2F919E8EA5B00F081AD /* LPLStartUpsDataTranslator.m in Sources */,
 				FB75747B19DDAC2B00CD62DB /* LPLLogFileHeader.m in Sources */,
 				FB4AFB9D19E870470043BF61 /* LPLKeystrokesDataTranslator.m in Sources */,
 				FB2783FE19CFE7D600F2D16B /* LPLLappyLogger.m in Sources */,
@@ -476,9 +506,11 @@
 				FB0D421919D1296600B70375 /* LPLConfigManager.m in Sources */,
 				FB4AFB9A19E86FAB0043BF61 /* LPLKeystrokesDataSource.m in Sources */,
 				FB27840719CFE97D00F2D16B /* LPLDataSource.m in Sources */,
+				FB43D2EC19E8E45200F081AD /* LPLMouseClicksDataSource.m in Sources */,
 				FB8AFE8B19E387DC001C3B20 /* LPLLogger.m in Sources */,
 				FB27840519CFE93200F2D16B /* LPLBatteryPercentageDataSource.m in Sources */,
 				FBDFE5CD19CC878B00FAFA90 /* main.m in Sources */,
+				FB43D2F619E8EA4E00F081AD /* LPLStartUpsDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
