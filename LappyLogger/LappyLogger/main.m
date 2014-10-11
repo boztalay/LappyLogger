@@ -11,8 +11,10 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        [[LPLLappyLogger sharedInstance] start];
-        [[NSRunLoop currentRunLoop] run];
+        BOOL couldStart = [[LPLLappyLogger sharedInstance] start];
+        if(couldStart) {
+            [[NSRunLoop currentRunLoop] run];
+        }
     }
     return 0;
 }

@@ -15,6 +15,6 @@
 
 + (LPLLappyLogger*)sharedInstance;
 
-- (void)start;
+- (BOOL)start;
 
 @end
