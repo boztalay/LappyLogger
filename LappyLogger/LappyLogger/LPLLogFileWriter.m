@@ -20,14 +20,14 @@
 
 #pragma mark - Init, validation
 
-- (id)initWithFileName:(NSString*)fileName
-     andDataSourceName:(NSString*)dataSourceName
-     andDataTranslator:(id<LPLDataTranslator>)dataTranslator
+- (id)initWithFileBaseName:(NSString*)fileBaseName
+         andDataSourceName:(NSString*)dataSourceName
+         andDataTranslator:(id<LPLDataTranslator>)dataTranslator
 {
     self = [super init];
     if(self) {
         self.dataTranslator = dataTranslator;
-        self.baseFileName = fileName;
+        self.baseFileName = fileBaseName;
         self.dataSourceName = dataSourceName;
         self.filePath = [self findMostRecentFilePath];
         

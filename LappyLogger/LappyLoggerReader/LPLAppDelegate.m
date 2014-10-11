@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 Ben Oztalay. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "LPLAppDelegate.h"
 
-@interface AppDelegate ()
+@interface LPLAppDelegate ()
 
 @property (weak) IBOutlet NSWindow *window;
 
 @end
 
-@implementation AppDelegate
+@implementation LPLAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application

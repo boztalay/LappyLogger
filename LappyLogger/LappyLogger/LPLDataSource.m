@@ -22,7 +22,7 @@
     self.dataTranslator = dataTranslator;
     
     [[LPLLogger sharedInstance] incrementIndent];
-    self.logFileWriter = [[LPLLogFileWriter alloc] initWithFileName:logFileName
+    self.logFileWriter = [[LPLLogFileWriter alloc] initWithFileBaseName:logFileName
                                                   andDataSourceName:dataSourceName
                                                   andDataTranslator:self.dataTranslator];
     [[LPLLogger sharedInstance] decrementIndent];

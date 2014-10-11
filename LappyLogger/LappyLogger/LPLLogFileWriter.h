@@ -18,9 +18,9 @@
 @property (strong, nonatomic) id<LPLDataTranslator> dataTranslator;
 @property (strong, nonatomic) NSDate* lastRecordingDate;
 
-- (id)initWithFileName:(NSString*)fileName
-     andDataSourceName:(NSString*)dataSourceName
-     andDataTranslator:(id<LPLDataTranslator>)dataTranslator;
+- (id)initWithFileBaseName:(NSString*)fileBaseName
+         andDataSourceName:(NSString*)dataSourceName
+         andDataTranslator:(id<LPLDataTranslator>)dataTranslator;
 
 - (BOOL)appendDataPointAndReturnSuccess:(id)dataToWrite;
 
