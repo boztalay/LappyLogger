@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "LPLLappyLogger.h"
 
-int main(int argc, const char * argv[]) {
+int main(int argc, const char* argv[]) {
     @autoreleasepool {
-        BOOL couldStart = [[LPLLappyLogger sharedInstance] start];
+        BOOL couldStart = [[LPLLappyLogger sharedInstance] startWithArgc:argc andArgv:argv];
         if(couldStart) {
             [[NSRunLoop currentRunLoop] run];
         }

@@ -9,6 +9,7 @@
 #import "LPLLappyLogger.h"
 #import "LPLLogger.h"
 #import "LPLConfigManager.h"
+#import "LPLLogDataExporter.h"
 #import "LPLDataSource.h"
 #import "LPLBatteryPercentageDataSource.h"
 #import "LPLBatteryLifeDataSource.h"
@@ -44,12 +45,9 @@
     return self;
 }
 
-- (BOOL)start
+- (BOOL)startWithArgc:(int)argc andArgv:(char*[])argv
 {
-    if([self isAlreadyRunning]) {
-        return NO;
-    }
-    
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Reading the configuration..."];
     [[LPLLogger sharedInstance] incrementIndent];
     BOOL isConfigCorrect = [[LPLConfigManager sharedInstance] readConfigAndReturnSuccess];
     [[LPLLogger sharedInstance] decrementIndent];
@@ -59,7 +57,27 @@
         return NO;
     }
     
-    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Configuration was good! Creating the data sources..."];
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Configuration was good!"];
+    
+    if(argc == 1) {
+        return [self startBackgroundProcess];
+    } else if(argc == 2 && [@"export" isEqualToString:[NSString stringWithCString:argv[1] encoding:NSUTF8StringEncoding]]) {
+        return [self exportData];
+    } else {
+        return NO;
+    }
+}
+
+#pragma mark - Starting the background process
+
+- (BOOL)startBackgroundProcess
+{
+    if([self isAlreadyRunning]) {
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"LappyLogger is already running!"];
+        return NO;
+    }
+    
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Creating the data sources..."];
     [[LPLLogger sharedInstance] incrementIndent];
     
     LPLBatteryPercentageDataSource* batteryPercentageDataSource = [[LPLBatteryPercentageDataSource alloc] init];
@@ -161,6 +179,30 @@
     
     [[LPLLogger sharedInstance] decrementIndent];
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Finished recording data points"];
+}
+
+#pragma mark - Exporting data
+
+- (BOOL)exportData
+{
+    LPLLogDataExporter* exporter = [[LPLLogDataExporter alloc] init];
+    
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Exporting data..."];
+    [[LPLLogger sharedInstance] incrementIndent];
+    
+    BOOL wasExportSuccessful = [exporter exportData];
+    
+    [[LPLLogger sharedInstance] decrementIndent];
+    
+    if(wasExportSuccessful) {
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully exported (at least some) data! You'll find it in ~/LappyLoggerData/"];
+    } else {
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Failed to export any data!"];
+    }
+    
+    // This is a little weird, but return NO so it doesn't start
+    // the run loop in main.m
+    return NO;
 }
 
 @end

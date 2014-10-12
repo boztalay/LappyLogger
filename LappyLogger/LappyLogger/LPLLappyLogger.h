@@ -15,6 +15,6 @@
 
 + (LPLLappyLogger*)sharedInstance;
 
-- (BOOL)start;
+- (BOOL)startWithArgc:(int)argc andArgv:(char*[])argv;
 
 @end
