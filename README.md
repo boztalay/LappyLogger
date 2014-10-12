@@ -44,13 +44,6 @@ If you ever want to stop using LappyLogger, you can unload the process from laun
 sudo launchctl unload /Library/LaunchAgents/com.boztalay.LappyLogger.plist
 ```
 
-Building and Installing (App)
------------------------------
-
-Running the app is as simple as opening `LappyLogger.xcodeproj` and selecting `LappyLoggerReader` as the scheme in the upper left and run it.
-
-I haven't finished up the app yet, but once I do, I'll include installation instructions here.
-
 Notes
 -----
 
