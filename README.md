@@ -60,4 +60,3 @@ Known Issues - To Do
 * Other data sources?
 * Switch to use as much event-based monitoring as possible instead of polling
 * If the entire `~/.LappyLogger/` directory gets deleted, recreate it
-* Finish the reader app
