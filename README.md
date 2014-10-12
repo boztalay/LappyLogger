@@ -11,14 +11,14 @@ A Mac OS X tool to log various statistics about the usage of my laptop. Here's w
 
 It also tracks when it starts up, which correlates with how often I reboot my laptop.
 
-There are two components: a lightweight process that runs in the background, and an app to read and analyze the data it logs. The background process is registered with launchd to make sure it starts up at login and persists.
+It's a lightweight background process that's registered with launchd to make sure it starts up at login and persists. It also provides a quick tool for exporting the logged data to a `.csv` for analysis.
 
 The logging data is stored in a custom binary file format to cut down on the size of the files, and the data sources only record data if they need to. If the battery life hasn't changed in the last minute, it won't record another data point.
 
 It has measures in place to handle its data files getting corrupted, so it'll create a new data file for a data source if its data file gets corrupted, while still keeping the old file around so it that data isn't completely lost.
 
-Building and Installing (Background Process)
---------------------------------------------
+Building and Installing
+-----------------------
 
 NOTE: You're welcome to use this yourself (I'd love pull requests!), but keep in mind that this isn't 100% polished (which should be evident from this installation process).
 
