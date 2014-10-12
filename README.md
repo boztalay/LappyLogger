@@ -20,7 +20,7 @@ It has measures in place to handle its data files getting corrupted, so it'll cr
 Building and Installing (Background Process)
 --------------------------------------------
 
-NOTE: You're welcome to use this yourself (I'd love pull requests!), but keep in mind that this isn't 100% (which should be evident from this installation process).
+NOTE: You're welcome to use this yourself (I'd love pull requests!), but keep in mind that this isn't 100% polished (which should be evident from this installation process).
 
 First of all, clone this repository and open up `LappyLogger.xcodeproj` under `LappyLogger/`. You'll need at least Xcode 6 to build the background process, and 6.1 (beta at the time of writing) to build the app.
 
