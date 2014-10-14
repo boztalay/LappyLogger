@@ -17,7 +17,7 @@
 
 #define kDefaultTimedDataSourceInterval 60.0f
 #define kDefaultLogDataDirectoryName @"logData"
-#define kDefaultExportDirectory @"~/LappyLoggerData/"
+#define kDefaultExportDirectoryName @"LappyLoggerData"
 
 @implementation LPLConfigManager
 
@@ -39,13 +39,13 @@
 {
     self = [super init];
     if(self) {
-        NSString* homeDirectory = [self getLoggedInUserHomeDirectory];
-        if(homeDirectory == nil) {
+        self.homeDirectory = [self getLoggedInUserHomeDirectory];
+        if(self.homeDirectory == nil) {
             [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't get the current user's home directory, falling back on ~"];
-            homeDirectory = [@"~" stringByExpandingTildeInPath];
+            self.homeDirectory = [@"~" stringByExpandingTildeInPath];
         }
         
-        self.dotDirectoryPath = [homeDirectory stringByAppendingPathComponent:kDotDirectoryName];
+        self.dotDirectoryPath = [self.homeDirectory stringByAppendingPathComponent:kDotDirectoryName];
         self.configPlistPath = [self.dotDirectoryPath stringByAppendingPathComponent:kConfigPlistName];
     }
     return self;
@@ -117,7 +117,7 @@
 {
     NSDictionary* defaultConfigValues = @{LPLConfigTimedDataSourceIntervalKey : [NSNumber numberWithFloat:kDefaultTimedDataSourceInterval],
                                           LPLConfigLogDataDirectoryKey : [self.dotDirectoryPath stringByAppendingPathComponent:kDefaultLogDataDirectoryName],
-                                          LPLConfigExportDirectoryKey : [kDefaultExportDirectory stringByExpandingTildeInPath]};
+                                          LPLConfigExportDirectoryKey : [self.homeDirectory stringByAppendingPathComponent:kDefaultExportDirectoryName]};
     
     BOOL successfullyWroteConfigPlist = [defaultConfigValues writeToURL:[NSURL fileURLWithPath:self.configPlistPath] atomically:NO];
     if(!successfullyWroteConfigPlist) {
