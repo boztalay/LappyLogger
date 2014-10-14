@@ -18,6 +18,10 @@
 - (BOOL)initializeDataSourceWithName:(NSString*)dataSourceName
                       andLogFileName:(NSString*)logFileName
                    andDataTranslator:(id<LPLDataTranslator>)dataTranslator;
+
 - (void)recordDataPoint;
+
++ (NSString*)fileBaseName;
++ (id<LPLDataTranslator>)dataTranslator;
 
 @end

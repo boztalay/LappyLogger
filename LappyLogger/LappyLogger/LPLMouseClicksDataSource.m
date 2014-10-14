@@ -26,7 +26,7 @@ static NSInteger mouseClicksSinceLastRecord;
     if(self) {
         BOOL initializationSucceeded = [self initializeDataSourceWithName:kDataSourceName
                                                            andLogFileName:kLogDataFileName
-                                                        andDataTranslator:[[LPLMouseClicksDataTranslator alloc] init]];
+                                                        andDataTranslator:[self dataTranslator]];
         if(!initializationSucceeded) {
             return nil;
         }
@@ -100,6 +100,16 @@ CGEventRef mouseClickEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
     } else {
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully recorded the datapoint"];
     }
+}
+
++ (NSString*)fileBaseName
+{
+    return kLogDataFileName;
+}
+
++ (id<LPLDataTranslator>)dataTranslator
+{
+    return [[LPLMouseClicksDataTranslator alloc] init];
 }
 
 @end

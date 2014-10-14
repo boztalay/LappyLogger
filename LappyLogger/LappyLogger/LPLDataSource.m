@@ -38,7 +38,19 @@
 
 - (void)recordDataPoint
 {
-    
+    [NSException raise:@"Not Implemented" format:@"You must implement recordDataPoint!"];
+}
+
++ (NSString*)fileBaseName
+{
+    [NSException raise:@"Not Implemented" format:@"You must implement fileBaseName!"];
+    return nil;
+}
+
++ (id<LPLDataTranslator>)dataTranslator
+{
+    [NSException raise:@"Not Implemented" format:@"You must implement dataTranslator!"];
+    return nil;
 }
 
 @end

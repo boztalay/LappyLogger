@@ -26,7 +26,7 @@
     if(self) {
         BOOL initializationSucceeded = [self initializeDataSourceWithName:kDataSourceName
                                                            andLogFileName:kLogDataFileName
-                                                        andDataTranslator:[[LPLACConnectionStatusDataTranslator alloc] init]];
+                                                        andDataTranslator:[self dataTranslator]];
         if(!initializationSucceeded) {
             return nil;
         }
@@ -82,6 +82,16 @@
     } else {
         return 0;
     }
+}
+
++ (NSString*)fileBaseName
+{
+    return kLogDataFileName;
+}
+
++ (id<LPLDataTranslator>)dataTranslator
+{
+    return [[LPLACConnectionStatusDataTranslator alloc] init];
 }
 
 @end

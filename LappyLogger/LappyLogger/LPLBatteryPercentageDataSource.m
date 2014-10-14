@@ -26,7 +26,7 @@
     if(self) {
         BOOL initializationSucceeded = [self initializeDataSourceWithName:kDataSourceName
                                                            andLogFileName:kLogDataFileName
-                                                        andDataTranslator:[[LPLBatteryPercentageDataTranslator alloc] init]];
+                                                        andDataTranslator:[self dataTranslator]];
         if(!initializationSucceeded) {
             return nil;
         }
@@ -94,6 +94,16 @@
     }
     
     return currentPercentage;
+}
+
++ (NSString*)fileBaseName
+{
+    return kLogDataFileName;
+}
+
++ (id<LPLDataTranslator>)dataTranslator
+{
+    return [[LPLBatteryPercentageDataTranslator alloc] init];
 }
 
 @end

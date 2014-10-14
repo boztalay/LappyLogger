@@ -23,7 +23,7 @@
     if(self) {
         BOOL initializationSucceeded = [self initializeDataSourceWithName:kDataSourceName
                                                            andLogFileName:kLogDataFileName
-                                                        andDataTranslator:[[LPLStartUpsDataTranslator alloc] init]];
+                                                        andDataTranslator:[self dataTranslator]];
         if(!initializationSucceeded) {
             return nil;
         }
@@ -44,6 +44,16 @@
     } else {
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully recorded the datapoint"];
     }
+}
+
++ (NSString*)fileBaseName
+{
+    return kLogDataFileName;
+}
+
++ (id<LPLDataTranslator>)dataTranslator
+{
+    return [[LPLStartUpsDataTranslator alloc] init];
 }
 
 @end

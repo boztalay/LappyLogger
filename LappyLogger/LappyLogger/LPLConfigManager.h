@@ -10,6 +10,7 @@
 
 static NSString* LPLConfigLogDataDirectoryKey = @"LogDataDirectory";
 static NSString* LPLConfigTimedDataSourceIntervalKey = @"TimedDataSourceInterval";
+static NSString* LPLConfigExportDirectoryKey = @"ExportDirectory";
 
 @interface LPLConfigManager : NSObject
 

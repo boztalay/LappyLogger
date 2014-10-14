@@ -26,7 +26,7 @@ static NSInteger keystrokesSinceLastRecord;
     if(self) {
         BOOL initializationSucceeded = [self initializeDataSourceWithName:kDataSourceName
                                                            andLogFileName:kLogDataFileName
-                                                        andDataTranslator:[[LPLKeystrokesDataTranslator alloc] init]];
+                                                        andDataTranslator:[self dataTranslator]];
         if(!initializationSucceeded) {
             return nil;
         }
@@ -100,6 +100,16 @@ CGEventRef keystrokeEventCallback(CGEventTapProxy proxy, CGEventType type, CGEve
     } else {
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully recorded the datapoint"];
     }
+}
+
++ (NSString*)fileBaseName
+{
+    return kLogDataFileName;
+}
+
++ (id<LPLDataTranslator>)dataTranslator
+{
+    return [[LPLKeystrokesDataTranslator alloc] init];
 }
 
 @end

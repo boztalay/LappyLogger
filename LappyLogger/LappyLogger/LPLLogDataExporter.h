@@ -10,6 +10,8 @@
 
 @interface LPLLogDataExporter : NSObject
 
+@property (strong, nonatomic) NSDateFormatter* dateFormatter;
+
 - (BOOL)exportData;
 
 @end

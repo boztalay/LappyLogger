@@ -195,7 +195,7 @@
     [[LPLLogger sharedInstance] decrementIndent];
     
     if(wasExportSuccessful) {
-        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully exported (at least some) data! You'll find it in ~/LappyLoggerData/"];
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully exported (at least some) data! You'll find it in %@", [LPLConfigManager sharedInstance].configValues[LPLConfigExportDirectoryKey]];
     } else {
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Failed to export any data!"];
     }

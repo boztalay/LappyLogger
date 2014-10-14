@@ -17,6 +17,7 @@
 
 #define kDefaultTimedDataSourceInterval 60.0f
 #define kDefaultLogDataDirectoryName @"logData"
+#define kDefaultExportDirectory @"~/LappyLoggerData/"
 
 @implementation LPLConfigManager
 
@@ -115,7 +116,8 @@
 - (BOOL)createConfigPlistWithDefaultValues
 {
     NSDictionary* defaultConfigValues = @{LPLConfigTimedDataSourceIntervalKey : [NSNumber numberWithFloat:kDefaultTimedDataSourceInterval],
-                                          LPLConfigLogDataDirectoryKey : [self.dotDirectoryPath stringByAppendingPathComponent:kDefaultLogDataDirectoryName]};
+                                          LPLConfigLogDataDirectoryKey : [self.dotDirectoryPath stringByAppendingPathComponent:kDefaultLogDataDirectoryName],
+                                          LPLConfigExportDirectoryKey : [kDefaultExportDirectory stringByExpandingTildeInPath]};
     
     BOOL successfullyWroteConfigPlist = [defaultConfigValues writeToURL:[NSURL fileURLWithPath:self.configPlistPath] atomically:NO];
     if(!successfullyWroteConfigPlist) {
@@ -143,7 +145,7 @@
 {
     self.configValues = configValues;
     
-    if(!self.configValues[LPLConfigLogDataDirectoryKey] || !self.configValues[LPLConfigTimedDataSourceIntervalKey]) {
+    if(!self.configValues[LPLConfigLogDataDirectoryKey] || !self.configValues[LPLConfigTimedDataSourceIntervalKey] || !self.configValues[LPLConfigExportDirectoryKey]) {
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Not all of the required fields are present in the config file!"];
         return NO;
     }
