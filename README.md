@@ -44,6 +44,11 @@ If you ever want to stop using LappyLogger, you can unload the process from laun
 sudo launchctl unload /Library/LaunchAgents/com.boztalay.LappyLogger.plist
 ```
 
+Exporting Data
+--------------
+
+To export the data LappyLogger collects to a more useful format, being .csv files, simply run `LappyLogger export`. It'll read as much data as it can, merging separate files for each data source, and write it to `~/LappyLoggerData/` by default.
+
 Notes
 -----
 
@@ -60,3 +65,5 @@ Known Issues - To Do
 * Other data sources?
 * Switch to use as much event-based monitoring as possible instead of polling
 * If the entire `~/.LappyLogger/` directory gets deleted, recreate it
+* Some restructuring (generalize data translators, make exporting data a little less weird)
+* What if the user changes time zones? Timestamps are absolute, but time of day matters
