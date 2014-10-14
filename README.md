@@ -66,3 +66,4 @@ Known Issues - To Do
 * Switch to use as much event-based monitoring as possible instead of polling
 * If the entire `~/.LappyLogger/` directory gets deleted, recreate it
 * Some restructuring (generalize data translators, make exporting data a little less weird)
+* What if the user changes time zones? Timestamps are absolute, but time of day matters
