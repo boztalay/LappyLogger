@@ -23,7 +23,7 @@
     if(self) {
         BOOL initializationSucceeded = [self initializeDataSourceWithName:kDataSourceName
                                                            andLogFileName:kLogDataFileName
-                                                        andDataTranslator:[self dataTranslator]];
+                                                        andDataTranslator:[LPLStartUpsDataSource dataTranslator]];
         if(!initializationSucceeded) {
             return nil;
         }

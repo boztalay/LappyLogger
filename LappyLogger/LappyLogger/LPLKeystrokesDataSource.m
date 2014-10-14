@@ -26,7 +26,7 @@ static NSInteger keystrokesSinceLastRecord;
     if(self) {
         BOOL initializationSucceeded = [self initializeDataSourceWithName:kDataSourceName
                                                            andLogFileName:kLogDataFileName
-                                                        andDataTranslator:[self dataTranslator]];
+                                                        andDataTranslator:[LPLKeystrokesDataSource dataTranslator]];
         if(!initializationSucceeded) {
             return nil;
         }

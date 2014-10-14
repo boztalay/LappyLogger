@@ -26,7 +26,7 @@ static NSInteger mouseClicksSinceLastRecord;
     if(self) {
         BOOL initializationSucceeded = [self initializeDataSourceWithName:kDataSourceName
                                                            andLogFileName:kLogDataFileName
-                                                        andDataTranslator:[self dataTranslator]];
+                                                        andDataTranslator:[LPLMouseClicksDataSource dataTranslator]];
         if(!initializationSucceeded) {
             return nil;
         }
