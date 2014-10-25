@@ -22,7 +22,7 @@ Building and Installing
 
 NOTE: You're welcome to use this yourself (I'd love pull requests!), but keep in mind that this isn't 100% polished (which should be evident from this installation process).
 
-First of all, clone this repository and open up `LappyLogger.xcodeproj` under `LappyLogger/`. You'll need at least Xcode 6 to build the background process, and 6.1 (beta at the time of writing) to build the app.
+First of all, clone this repository and open up `LappyLogger.xcodeproj` under `LappyLogger/`. You'll need at least Xcode 6 to build it.
 
 To build the background process, select the `LappyLoggerRelease` scheme in the top left, then build an archive by going to `Product -> Archive`. When the archive is done building, the Organizer window should pop up. Select the latest archive and export it, selecting to save the build products. Navigate to the root of this repository and save them there under `LappyLoggerRelease/` (sometimes Xcode likes to rename them).
 
