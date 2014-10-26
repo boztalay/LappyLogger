@@ -33,7 +33,7 @@ To install the background process, run the following commands.
 sudo ./install.sh
 
 # Tells launchd about the process and launches it
-sudo launchctl load -w -F /Library/LaunchAgents/com.boztalay.LappyLogger.plist
+sudo launchctl load -w -F /Library/LaunchDaemons/com.boztalay.LappyLogger.plist
 ```
 
 It should be up and running! Check that `~/.LappyLogger` exists now. That directory holds the configuration (`config.plist`), log file (`LappyLogger.log`), and the actual data (`logData/`).
@@ -41,7 +41,7 @@ It should be up and running! Check that `~/.LappyLogger` exists now. That direct
 If you ever want to stop using LappyLogger, you can unload the process from launchd by running
 
 ```bash
-sudo launchctl unload /Library/LaunchAgents/com.boztalay.LappyLogger.plist
+sudo launchctl unload /Library/LaunchDaemons/com.boztalay.LappyLogger.plist
 ```
 
 Exporting Data
