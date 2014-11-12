@@ -10,4 +10,6 @@
 
 @interface LPLKeystrokesDataSource : LPLDataSource
 
+@property (nonatomic) NSInteger numDataPointsWithoutData;
+
 @end

@@ -15,6 +15,10 @@
 @property (strong, nonatomic) LPLLogFileWriter* logFileWriter;
 @property (strong, nonatomic) id<LPLDataTranslator> dataTranslator;
 
+// This is used by the data sources to tell the LappyLogger that something
+// is wrong, and it should try a reset
+@property (nonatomic) BOOL restartRequested;
+
 - (BOOL)initializeDataSourceWithName:(NSString*)dataSourceName
                       andLogFileName:(NSString*)logFileName
                    andDataTranslator:(id<LPLDataTranslator>)dataTranslator;

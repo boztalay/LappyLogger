@@ -45,7 +45,7 @@
     return self;
 }
 
-- (BOOL)startWithArgc:(int)argc andArgv:(char*[])argv
+- (BOOL)startWithArgc:(int)argc andArgv:(const char*[])argv
 {
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Reading the configuration..."];
     [[LPLLogger sharedInstance] incrementIndent];
@@ -112,6 +112,24 @@
     
     [[LPLLogger sharedInstance] decrementIndent];
     
+    // Check if none of the data sources could be created
+    
+    if(self.dataSources.count == 0) {
+        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't create any data sources! Trying a reset"];
+        return NO;
+    }
+    
+    // Check if any data source requested a restart
+    
+    for(LPLDataSource* dataSource in self.dataSources) {
+        if(dataSource.restartRequested) {
+            [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"A data source requested a restart! Restarting"];
+            return NO;
+        }
+    }
+    
+    // If they're all good, go ahead with the background process
+    
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@" "];
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Starting data recording"];
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@" "];
@@ -121,6 +139,8 @@
 }
 
 - (BOOL)isAlreadyRunning {
+    // This is a little hacky
+    
     NSPipe* psPipe = [NSPipe pipe];
     NSPipe* grepPipe = [NSPipe pipe];
     NSFileHandle* file = grepPipe.fileHandleForReading;
@@ -162,7 +182,7 @@
                                                 selector:@selector(recordDataPoints)
                                                 userInfo:nil
                                                  repeats:YES];
-    
+   
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
     
     [self recordDataPoints];
@@ -179,6 +199,13 @@
     
     [[LPLLogger sharedInstance] decrementIndent];
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Finished recording data points"];
+    
+    for(LPLDataSource* dataSource in self.dataSources) {
+        if(dataSource.restartRequested) {
+            [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"A data source requested a restart! Restarting"];
+            CFRunLoopStop(CFRunLoopGetCurrent());
+        }
+    }
 }
 
 #pragma mark - Exporting data

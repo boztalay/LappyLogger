@@ -19,6 +19,7 @@
 {
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Creating the %@ data source...", dataSourceName];
     
+    self.restartRequested = NO;
     self.dataTranslator = dataTranslator;
     
     [[LPLLogger sharedInstance] incrementIndent];

@@ -10,4 +10,6 @@
 
 @interface LPLMouseClicksDataSource : LPLDataSource
 
+@property (nonatomic) NSInteger numDataPointsWithoutData;
+
 @end

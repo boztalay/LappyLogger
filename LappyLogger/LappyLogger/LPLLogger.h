@@ -17,7 +17,7 @@
 @property (nonatomic) dispatch_queue_t logFileWritingQueue;
 
 + (LPLLogger*)sharedInstance;
-- (id)initWithFileName:(NSString*)fileName;
+- (id)initWithFileName:(NSString*)fileName andCheckCanWriteFile:(BOOL)checkCanWriteFile;
 
 - (void)logFromClass:(NSString*)className withMessage:(NSString*)message, ...;
 

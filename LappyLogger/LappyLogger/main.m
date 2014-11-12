@@ -13,7 +13,7 @@ int main(int argc, const char* argv[]) {
     @autoreleasepool {
         BOOL couldStart = [[LPLLappyLogger sharedInstance] startWithArgc:argc andArgv:argv];
         if(couldStart) {
-            [[NSRunLoop currentRunLoop] run];
+            CFRunLoopRun();
         }
     }
     return 0;

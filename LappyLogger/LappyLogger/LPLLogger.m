@@ -10,6 +10,7 @@
 #import "LPLConfigManager.h"
 
 #define kLogFileName @"LappyLogger.log"
+#define kSecondaryLogFileName @"LappyLogger.log.secondary"
 #define kLogFileWritingQueueName "com.boztalay.LappyLogger.logFileWriting"
 
 @implementation LPLLogger
@@ -22,13 +23,19 @@
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[LPLLogger alloc] initWithFileName:kLogFileName];
+        instance = [[LPLLogger alloc] initWithFileName:kLogFileName andCheckCanWriteFile:YES];
+        
+        // If it couldn't init with the main file name, try the secondary file
+        // This seems necessary because sometimes it fails to write to the log file and data files
+        if(instance == nil) {
+            instance = [[LPLLogger alloc] initWithFileName:kSecondaryLogFileName andCheckCanWriteFile:NO];
+        }
     });
     
     return instance;
 }
 
-- (id)initWithFileName:(NSString*)fileName
+- (id)initWithFileName:(NSString*)fileName andCheckCanWriteFile:(BOOL)checkCanWriteFile
 {
     self = [super init];
     if(self) {
@@ -40,6 +47,9 @@
         }
         
         self.fileHandle = [NSFileHandle fileHandleForWritingAtPath:self.filePath];
+        if(checkCanWriteFile && self.fileHandle == nil) {
+            return nil;
+        }
         
         self.logFileWritingQueue = dispatch_queue_create(kLogFileWritingQueueName, DISPATCH_QUEUE_SERIAL);
         currentIndent = 0;

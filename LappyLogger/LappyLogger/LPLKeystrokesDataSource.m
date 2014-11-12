@@ -16,6 +16,10 @@
 #define kLogDataFileName @"keystrokesLog"
 #define kDataSourceName @"Keystrokes"
 
+// If we get this many consecutive data points without any keystrokes,
+// tell the LappyLogger that something's wrong and it should try a restart
+#define kMaxDataPointsWithoutData 150
+
 static NSInteger keystrokesSinceLastRecord;
 
 @implementation LPLKeystrokesDataSource
@@ -34,8 +38,11 @@ static NSInteger keystrokesSinceLastRecord;
         keystrokesSinceLastRecord = -1;
         BOOL couldSetUpKeystrokeMonitoring = [self setUpKeystrokeMonitoring];
         if(!couldSetUpKeystrokeMonitoring) {
-            return nil;
+            // Something's wrong that we shouldn't ignore, request a restart
+            self.restartRequested = YES;
         }
+        
+        self.numDataPointsWithoutData = 0;
     }
     return self;
 }
@@ -84,16 +91,28 @@ CGEventRef keystrokeEventCallback(CGEventTapProxy proxy, CGEventType type, CGEve
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Recording the keystrokes data point..."];
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"%ld keystrokes since the last record", keystrokesSinceLastRecord];
     
+    if(keystrokesSinceLastRecord <= 0) {
+        self.numDataPointsWithoutData++;
+    } else {
+        self.numDataPointsWithoutData = 0;
+    }
+    
+    // If we have too many consecutive data points without data, let
+    // the LappyLogger know something's wrong
+    if(self.numDataPointsWithoutData >= kMaxDataPointsWithoutData) {
+        self.restartRequested = YES;
+    }
+    
     if(keystrokesSinceLastRecord < 0) {
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Looks like there haven't been any recorded keystrokes!"];
         return;
     }
     
+    keystrokesSinceLastRecord = 0;
+    
     [[LPLLogger sharedInstance] incrementIndent];
     BOOL writeSuccess = [self.logFileWriter appendDataPointAndReturnSuccess:[NSNumber numberWithUnsignedShort:(unsigned short)keystrokesSinceLastRecord]];
     [[LPLLogger sharedInstance] decrementIndent];
-    
-    keystrokesSinceLastRecord = 0;
     
     if(!writeSuccess) {
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't append the latest datapoint to the log file!"];

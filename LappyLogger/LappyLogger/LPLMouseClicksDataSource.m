@@ -16,6 +16,10 @@
 #define kLogDataFileName @"mouseClicksLog"
 #define kDataSourceName @"MouseClicks"
 
+// If we get this many consecutive data points without any mouse clicks,
+// tell the LappyLogger that something's wrong and it should try a restart
+#define kMaxDataPointsWithoutData 150
+
 static NSInteger mouseClicksSinceLastRecord;
 
 @implementation LPLMouseClicksDataSource
@@ -34,8 +38,11 @@ static NSInteger mouseClicksSinceLastRecord;
         mouseClicksSinceLastRecord = -1;
         BOOL couldSetUpMouseClicksMonitoring = [self setUpKeystrokeMonitoring];
         if(!couldSetUpMouseClicksMonitoring) {
-            return nil;
+            // Something's wrong that we shouldn't ignore, request a restart
+            self.restartRequested = YES;
         }
+        
+        self.numDataPointsWithoutData = 0;
     }
     return self;
 }
@@ -93,12 +100,24 @@ CGEventRef mouseClickEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
     BOOL writeSuccess = [self.logFileWriter appendDataPointAndReturnSuccess:[NSNumber numberWithUnsignedShort:(unsigned short)mouseClicksSinceLastRecord]];
     [[LPLLogger sharedInstance] decrementIndent];
     
-    mouseClicksSinceLastRecord = 0;
-    
     if(!writeSuccess) {
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't append the latest datapoint to the log file!"];
     } else {
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully recorded the datapoint"];
+    }
+    
+    if(mouseClicksSinceLastRecord == 0) {
+        self.numDataPointsWithoutData++;
+    } else {
+        self.numDataPointsWithoutData = 0;
+    }
+    
+    mouseClicksSinceLastRecord = 0;
+    
+    // If we have too many consecutive data points without data, let
+    // the LappyLogger know something's wrong
+    if(self.numDataPointsWithoutData >= kMaxDataPointsWithoutData) {
+        self.restartRequested = YES;
     }
 }
 
