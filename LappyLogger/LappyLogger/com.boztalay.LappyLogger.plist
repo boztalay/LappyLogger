@@ -8,6 +8,8 @@
 	<true/>
 	<key>ProcessType</key>
 	<string>Background</string>
+	<key>RunAtLoad</key>
+	<true/>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/usr/local/bin/LappyLogger</string>

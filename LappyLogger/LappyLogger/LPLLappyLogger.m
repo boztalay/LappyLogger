@@ -166,6 +166,8 @@
     NSString* grepOutput = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSArray* grepLines = [grepOutput componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
+    [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Grep output:\n%@", grepOutput];
+    
     // If more than one LappyLogger process is running, we'll get at least 3 lines
     // (1 for this process, 1 for the other, and 1 empty newline because of componentsSeparated)
     return grepLines.count >= 3;
