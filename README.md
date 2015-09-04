@@ -59,6 +59,7 @@ Also, even though the background process is started up at login, you won't see i
 Known Issues - To Do
 --------------------
 
+* Mad reliability issues, doesn't seem to run for more than a few days at a time
 * Screen brightness data source
 * Volume data source
 * Keyboard brightness data source
