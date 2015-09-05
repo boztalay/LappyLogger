@@ -17,8 +17,9 @@
 #define kDataSourceName @"MouseClicks"
 
 // If we get this many consecutive data points without any mouse clicks,
-// tell the LappyLogger that something's wrong and it should try a restart
-#define kMaxDataPointsWithoutData 150
+// tell the LappyLogger that something's wrong and it should try a restart.
+// This is 1 day if the sample rate is 60 seconds
+#define kMaxDataPointsWithoutData 1440
 
 static NSInteger mouseClicksSinceLastRecord;
 
@@ -36,7 +37,7 @@ static NSInteger mouseClicksSinceLastRecord;
         }
         
         mouseClicksSinceLastRecord = -1;
-        BOOL couldSetUpMouseClicksMonitoring = [self setUpKeystrokeMonitoring];
+        BOOL couldSetUpMouseClicksMonitoring = [self setUpMouseClickMonitoring];
         if(!couldSetUpMouseClicksMonitoring) {
             // Something's wrong that we shouldn't ignore, request a restart
             self.restartRequested = YES;
@@ -62,7 +63,7 @@ CGEventRef mouseClickEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
     return event;
 }
 
-- (BOOL)setUpKeystrokeMonitoring
+- (BOOL)setUpMouseClickMonitoring
 {
     CFMachPortRef eventTap;
     CGEventMask eventMask;

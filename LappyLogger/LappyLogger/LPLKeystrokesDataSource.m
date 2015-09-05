@@ -17,8 +17,9 @@
 #define kDataSourceName @"Keystrokes"
 
 // If we get this many consecutive data points without any keystrokes,
-// tell the LappyLogger that something's wrong and it should try a restart
-#define kMaxDataPointsWithoutData 150
+// tell the LappyLogger that something's wrong and it should try a restart.
+// This is 1 day if the sample rate is 60 seconds
+#define kMaxDataPointsWithoutData 1440
 
 static NSInteger keystrokesSinceLastRecord;
 
