@@ -14,5 +14,9 @@
 	<array>
 		<string>/usr/local/bin/LappyLogger</string>
 	</array>
+	<key>StandardOutPath</key>
+	<string>/var/log/LappyLogger.log</string>
+	<key>StandardErrorPath</key>
+	<string>/var/log/LappyLogger.log</string>
 </dict>
 </plist>
