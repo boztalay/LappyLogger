@@ -185,7 +185,7 @@
                                                 userInfo:nil
                                                  repeats:YES];
    
-    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
     
     [self recordDataPoints];
 }
