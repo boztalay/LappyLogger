@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Ben Oztalay. All rights reserved.
 //
 
+#import <AppKit/AppKit.h>
+
 #import "LPLKeystrokesDataSource.h"
 #import "LPLKeystrokesDataTranslator.h"
 #import "LPLLogger.h"
@@ -48,41 +50,55 @@ static NSInteger keystrokesSinceLastRecord;
     return self;
 }
 
-CGEventRef keystrokeEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon)
-{
-    if(type != kCGEventKeyDown) {
-        return event;
-    }
-    
-    if(keystrokesSinceLastRecord < 0) {
-        keystrokesSinceLastRecord = 0;
-    }
-    
-    keystrokesSinceLastRecord++;
-    
-    return event;
-}
+//CGEventRef keystrokeEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon)
+//{
+//    if(type != kCGEventKeyDown) {
+//        return event;
+//    }
+//    
+//    if(keystrokesSinceLastRecord < 0) {
+//        keystrokesSinceLastRecord = 0;
+//    }
+//    
+//    keystrokesSinceLastRecord++;
+//    
+//    return event;
+//}
+//
+//- (BOOL)setUpKeystrokeMonitoring
+//{
+//    CFMachPortRef eventTap;
+//    CGEventMask eventMask;
+//    CFRunLoopSourceRef runLoopSource;
+//    
+//    eventMask = (1 << kCGEventKeyDown);
+//    eventTap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, 0, eventMask, keystrokeEventCallback, NULL);
+//    if(!eventTap) {
+//        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't create the event tap! Keystroke logging won't work!"];
+//        return NO;
+//    }
+//    
+//    runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0);
+//    CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopCommonModes);
+//    CGEventTapEnable(eventTap, true);
+//    
+//    dispatch_async(dispatch_queue_create("com.boztalay.LappyLogger.keystrokeLogging", 0), ^ {
+//        CFRunLoopRun();
+//    });
+//    
+//    return YES;
+//}
 
 - (BOOL)setUpKeystrokeMonitoring
 {
-    CFMachPortRef eventTap;
-    CGEventMask eventMask;
-    CFRunLoopSourceRef runLoopSource;
-    
-    eventMask = (1 << kCGEventKeyDown);
-    eventTap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, 0, eventMask, keystrokeEventCallback, NULL);
-    if(!eventTap) {
-        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't create the event tap! Keystroke logging won't work!"];
-        return NO;
-    }
-    
-    runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0);
-    CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopCommonModes);
-    CGEventTapEnable(eventTap, true);
-    
-    dispatch_async(dispatch_queue_create("com.boztalay.LappyLogger.keystrokeLogging", 0), ^ {
-        CFRunLoopRun();
-    });
+    [NSEvent addGlobalMonitorForEventsMatchingMask:NSKeyDownMask
+                                           handler:^(NSEvent *event) {
+        if(keystrokesSinceLastRecord < 0) {
+            keystrokesSinceLastRecord = 0;
+        }
+                                                       
+        keystrokesSinceLastRecord++;
+    }];
     
     return YES;
 }

@@ -12,7 +12,7 @@
 	<true/>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/usr/local/bin/LappyLogger</string>
+		<string>/Applications/LappyLogger.app/LappyLogger</string>
 	</array>
 	<key>StandardOutPath</key>
 	<string>/var/log/LappyLogger.log</string>

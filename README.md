@@ -26,17 +26,20 @@ First of all, clone this repository and open up `LappyLogger.xcodeproj` under `L
 
 To build the background process, select the `LappyLoggerRelease` scheme in the top left, then build an archive by going to `Product -> Archive`. When the archive is done building, the Organizer window should pop up. Select the latest archive and export it, selecting to save the build products. Navigate to the root of this repository and save them there under `LappyLoggerRelease/` (sometimes Xcode likes to rename them).
 
-To install the background process, run the following commands.
+To install the background process, run the following commands:
 
 ```bash
 # Copies the binary and launchd plist to the appropriate places
 sudo ./install.sh
 
+# NOTE: Between these two, go to System Preferences, then Security & Privacy
+#       and give Accessibility permissions to /Appliations/LappyLogger.app
+
 # Tells launchd about the process and launches it
 sudo launchctl load -w -F /Library/LaunchDaemons/com.boztalay.LappyLogger.plist
 ```
 
-It should be up and running! Check that `~/.LappyLogger` exists now. That directory holds the configuration (`config.plist`), log file (`LappyLogger.log`), and the actual data (`logData/`).
+For some reason it likes to run as an app in your Dock, which is annoying. But, it should be up and running! Check that `~/.LappyLogger` exists now. That directory holds the configuration (`config.plist`), log file (`LappyLogger.log`), and the actual data (`logData/`).
 
 If you ever want to stop using LappyLogger, you can unload the process from launchd by running
 
@@ -59,7 +62,6 @@ Also, even though the background process is started up at login, you won't see i
 Known Issues - To Do
 --------------------
 
-* Mad reliability issues, doesn't seem to run for more than a few days at a time
 * Screen brightness data source
 * Volume data source
 * Keyboard brightness data source

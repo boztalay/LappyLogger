@@ -17,12 +17,7 @@
 		FB43D2F919E8EA5B00F081AD /* LPLStartUpsDataTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB43D2F819E8EA5B00F081AD /* LPLStartUpsDataTranslator.m */; };
 		FB4AFB9A19E86FAB0043BF61 /* LPLKeystrokesDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4AFB9919E86FAB0043BF61 /* LPLKeystrokesDataSource.m */; };
 		FB4AFB9D19E870470043BF61 /* LPLKeystrokesDataTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB4AFB9C19E870470043BF61 /* LPLKeystrokesDataTranslator.m */; };
-		FB55E6C719EEDB04009A5AB4 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB55E6C619EEDB04009A5AB4 /* NotificationCenter.framework */; };
-		FB55E6CE19EEDB04009A5AB4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FB55E6CC19EEDB04009A5AB4 /* InfoPlist.strings */; };
-		FB55E6D119EEDB04009A5AB4 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB55E6D019EEDB04009A5AB4 /* TodayViewController.m */; };
-		FB55E6D419EEDB04009A5AB4 /* ListRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB55E6D319EEDB04009A5AB4 /* ListRowViewController.m */; };
-		FB55E6D619EEDB04009A5AB4 /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB55E6D519EEDB04009A5AB4 /* TodayViewController.xib */; };
-		FB55E6D819EEDB04009A5AB4 /* ListRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB55E6D719EEDB04009A5AB4 /* ListRowViewController.xib */; };
+		FB5821A11C3EE78800DC8980 /* LPLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5821A01C3EE78800DC8980 /* LPLAppDelegate.m */; };
 		FB75747219DDA15F00CD62DB /* LPLBatteryPercentageDataTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB75747119DDA15F00CD62DB /* LPLBatteryPercentageDataTranslator.m */; };
 		FB75747519DDA56E00CD62DB /* LPLLogFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = FB75747419DDA56E00CD62DB /* LPLLogFileReader.m */; };
 		FB75747B19DDAC2B00CD62DB /* LPLLogFileHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FB75747A19DDAC2B00CD62DB /* LPLLogFileHeader.m */; };
@@ -33,10 +28,11 @@
 		FB862B9519E65BB600BEEE32 /* LPLACConnectionStatusDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FB862B9419E65BB600BEEE32 /* LPLACConnectionStatusDataSource.m */; };
 		FB862B9819E65BD500BEEE32 /* LPLACConnectionStatusDataTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB862B9719E65BD500BEEE32 /* LPLACConnectionStatusDataTranslator.m */; };
 		FB8AFE8B19E387DC001C3B20 /* LPLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8AFE8A19E387DC001C3B20 /* LPLLogger.m */; };
+		FB8B612F1C46DC7F00402074 /* Info.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = FB5821A51C3F209800DC8980 /* Info.plist */; };
+		FB8B61311C46DC9D00402074 /* com.boztalay.LappyLogger.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = FBB67AAD19E66E9B00D1591A /* com.boztalay.LappyLogger.plist */; };
 		FBA6C00419EB0931004B756F /* LPLLogDataExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = FBA6C00319EB0931004B756F /* LPLLogDataExporter.m */; };
 		FBDFE5CA19CC878B00FAFA90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBDFE5C919CC878B00FAFA90 /* Foundation.framework */; };
 		FBDFE5CD19CC878B00FAFA90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBDFE5CC19CC878B00FAFA90 /* main.m */; };
-		FBDFE5D119CC878B00FAFA90 /* LappyLogger.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = FBDFE5D019CC878B00FAFA90 /* LappyLogger.1 */; };
 		FBDFE5D819CC87EE00FAFA90 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBDFE5D719CC87EE00FAFA90 /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,15 +54,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		FBDFE5C419CC878B00FAFA90 /* CopyFiles */ = {
+		FB8B612A1C46DC4C00402074 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
+			dstPath = /Applications/LappyLogger.app;
 			dstSubfolderSpec = 0;
 			files = (
-				FBDFE5D119CC878B00FAFA90 /* LappyLogger.1 in CopyFiles */,
+				FB8B612F1C46DC7F00402074 /* Info.plist in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB8B61301C46DC8200402074 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /Library/LaunchDaemons;
+			dstSubfolderSpec = 0;
+			files = (
+				FB8B61311C46DC9D00402074 /* com.boztalay.LappyLogger.plist in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -94,17 +100,10 @@
 		FB4AFB9B19E870470043BF61 /* LPLKeystrokesDataTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLKeystrokesDataTranslator.h; sourceTree = "<group>"; };
 		FB4AFB9C19E870470043BF61 /* LPLKeystrokesDataTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLKeystrokesDataTranslator.m; sourceTree = "<group>"; };
 		FB4AFB9E19E8726E0043BF61 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		FB55E6C519EEDB04009A5AB4 /* LappyLoggerWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LappyLoggerWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB55E6C619EEDB04009A5AB4 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		FB55E6CA19EEDB04009A5AB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FB55E6CB19EEDB04009A5AB4 /* LappyLoggerWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LappyLoggerWidget.entitlements; sourceTree = "<group>"; };
-		FB55E6CD19EEDB04009A5AB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		FB55E6CF19EEDB04009A5AB4 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
-		FB55E6D019EEDB04009A5AB4 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
-		FB55E6D219EEDB04009A5AB4 /* ListRowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListRowViewController.h; sourceTree = "<group>"; };
-		FB55E6D319EEDB04009A5AB4 /* ListRowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListRowViewController.m; sourceTree = "<group>"; };
-		FB55E6D519EEDB04009A5AB4 /* TodayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodayViewController.xib; sourceTree = "<group>"; };
-		FB55E6D719EEDB04009A5AB4 /* ListRowViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListRowViewController.xib; sourceTree = "<group>"; };
+		FB58219F1C3EE78800DC8980 /* LPLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLAppDelegate.h; sourceTree = "<group>"; };
+		FB5821A01C3EE78800DC8980 /* LPLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLAppDelegate.m; sourceTree = "<group>"; };
+		FB5821A51C3F209800DC8980 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB75746E19DDA07900CD62DB /* LPLDataTranslator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LPLDataTranslator.h; sourceTree = "<group>"; };
 		FB75747019DDA15F00CD62DB /* LPLBatteryPercentageDataTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLBatteryPercentageDataTranslator.h; sourceTree = "<group>"; };
 		FB75747119DDA15F00CD62DB /* LPLBatteryPercentageDataTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLBatteryPercentageDataTranslator.m; sourceTree = "<group>"; };
@@ -133,19 +132,10 @@
 		FBDFE5C919CC878B00FAFA90 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FBDFE5CC19CC878B00FAFA90 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FBDFE5CF19CC878B00FAFA90 /* LappyLogger-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LappyLogger-Prefix.pch"; sourceTree = "<group>"; };
-		FBDFE5D019CC878B00FAFA90 /* LappyLogger.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = LappyLogger.1; sourceTree = "<group>"; };
 		FBDFE5D719CC87EE00FAFA90 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		FB55E6C219EEDB04009A5AB4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FB55E6C719EEDB04009A5AB4 /* NotificationCenter.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FBDFE5C319CC878B00FAFA90 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -216,30 +206,6 @@
 				FB4AFB9019E85C760043BF61 /* UnitTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		FB55E6C819EEDB04009A5AB4 /* LappyLoggerWidget */ = {
-			isa = PBXGroup;
-			children = (
-				FB55E6CF19EEDB04009A5AB4 /* TodayViewController.h */,
-				FB55E6D019EEDB04009A5AB4 /* TodayViewController.m */,
-				FB55E6D219EEDB04009A5AB4 /* ListRowViewController.h */,
-				FB55E6D319EEDB04009A5AB4 /* ListRowViewController.m */,
-				FB55E6D519EEDB04009A5AB4 /* TodayViewController.xib */,
-				FB55E6D719EEDB04009A5AB4 /* ListRowViewController.xib */,
-				FB55E6C919EEDB04009A5AB4 /* Supporting Files */,
-			);
-			path = LappyLoggerWidget;
-			sourceTree = "<group>";
-		};
-		FB55E6C919EEDB04009A5AB4 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				FB55E6CA19EEDB04009A5AB4 /* Info.plist */,
-				FB55E6CB19EEDB04009A5AB4 /* LappyLoggerWidget.entitlements */,
-				FB55E6CC19EEDB04009A5AB4 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		FB75746F19DDA13500CD62DB /* Battery Percentage */ = {
@@ -319,7 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				FBDFE5CB19CC878B00FAFA90 /* LappyLogger */,
-				FB55E6C819EEDB04009A5AB4 /* LappyLoggerWidget */,
 				FBDFE5C819CC878B00FAFA90 /* Frameworks */,
 				FBDFE5C719CC878B00FAFA90 /* Products */,
 			);
@@ -329,7 +294,6 @@
 			isa = PBXGroup;
 			children = (
 				FBDFE5C619CC878B00FAFA90 /* LappyLogger */,
-				FB55E6C519EEDB04009A5AB4 /* LappyLoggerWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -351,6 +315,8 @@
 			isa = PBXGroup;
 			children = (
 				FBDFE5CC19CC878B00FAFA90 /* main.m */,
+				FB58219F1C3EE78800DC8980 /* LPLAppDelegate.h */,
+				FB5821A01C3EE78800DC8980 /* LPLAppDelegate.m */,
 				FB2783FC19CFE7D600F2D16B /* LPLLappyLogger.h */,
 				FB2783FD19CFE7D600F2D16B /* LPLLappyLogger.m */,
 				FBB67AAD19E66E9B00D1591A /* com.boztalay.LappyLogger.plist */,
@@ -367,7 +333,7 @@
 		FBDFE5CE19CC878B00FAFA90 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				FBDFE5D019CC878B00FAFA90 /* LappyLogger.1 */,
+				FB5821A51C3F209800DC8980 /* Info.plist */,
 				FBDFE5CF19CC878B00FAFA90 /* LappyLogger-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -376,30 +342,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FB55E6C419EEDB04009A5AB4 /* LappyLoggerWidget */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FB55E6DE19EEDB04009A5AB4 /* Build configuration list for PBXNativeTarget "LappyLoggerWidget" */;
-			buildPhases = (
-				FB55E6C119EEDB04009A5AB4 /* Sources */,
-				FB55E6C219EEDB04009A5AB4 /* Frameworks */,
-				FB55E6C319EEDB04009A5AB4 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = LappyLoggerWidget;
-			productName = LappyLoggerWidget;
-			productReference = FB55E6C519EEDB04009A5AB4 /* LappyLoggerWidget.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		FBDFE5C519CC878B00FAFA90 /* LappyLogger */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FBDFE5D419CC878B00FAFA90 /* Build configuration list for PBXNativeTarget "LappyLogger" */;
 			buildPhases = (
 				FBDFE5C219CC878B00FAFA90 /* Sources */,
 				FBDFE5C319CC878B00FAFA90 /* Frameworks */,
-				FBDFE5C419CC878B00FAFA90 /* CopyFiles */,
+				FB8B612A1C46DC4C00402074 /* CopyFiles */,
+				FB8B61301C46DC8200402074 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -416,14 +366,8 @@
 		FBDFE5BE19CC878B00FAFA90 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Ben Oztalay";
-				TargetAttributes = {
-					FB55E6C419EEDB04009A5AB4 = {
-						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = FMKG4J2L9M;
-					};
-				};
 			};
 			buildConfigurationList = FBDFE5C119CC878B00FAFA90 /* Build configuration list for PBXProject "LappyLogger" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -445,7 +389,6 @@
 			projectRoot = "";
 			targets = (
 				FBDFE5C519CC878B00FAFA90 /* LappyLogger */,
-				FB55E6C419EEDB04009A5AB4 /* LappyLoggerWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -467,29 +410,7 @@
 		};
 /* End PBXReferenceProxy section */
 
-/* Begin PBXResourcesBuildPhase section */
-		FB55E6C319EEDB04009A5AB4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FB55E6D819EEDB04009A5AB4 /* ListRowViewController.xib in Resources */,
-				FB55E6D619EEDB04009A5AB4 /* TodayViewController.xib in Resources */,
-				FB55E6CE19EEDB04009A5AB4 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		FB55E6C119EEDB04009A5AB4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FB55E6D119EEDB04009A5AB4 /* TodayViewController.m in Sources */,
-				FB55E6D419EEDB04009A5AB4 /* ListRowViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FBDFE5C219CC878B00FAFA90 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -510,6 +431,7 @@
 				FB75747519DDA56E00CD62DB /* LPLLogFileReader.m in Sources */,
 				FB0D421919D1296600B70375 /* LPLConfigManager.m in Sources */,
 				FB4AFB9A19E86FAB0043BF61 /* LPLKeystrokesDataSource.m in Sources */,
+				FB5821A11C3EE78800DC8980 /* LPLAppDelegate.m in Sources */,
 				FB27840719CFE97D00F2D16B /* LPLDataSource.m in Sources */,
 				FB43D2EC19E8E45200F081AD /* LPLMouseClicksDataSource.m in Sources */,
 				FB8AFE8B19E387DC001C3B20 /* LPLLogger.m in Sources */,
@@ -521,54 +443,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		FB55E6CC19EEDB04009A5AB4 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FB55E6CD19EEDB04009A5AB4 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		FB55E6D919EEDB04009A5AB4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = LappyLoggerWidget/LappyLoggerWidget.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = LappyLoggerWidget/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		FB55E6DA19EEDB04009A5AB4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_ENTITLEMENTS = LappyLoggerWidget/LappyLoggerWidget.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = LappyLoggerWidget/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 		FBDFE5D219CC878B00FAFA90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -586,6 +461,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -601,7 +477,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -634,7 +510,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -644,6 +520,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LappyLogger/LappyLogger-Prefix.pch";
+				INSTALL_PATH = /Applications/LappyLogger.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -653,6 +530,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LappyLogger/LappyLogger-Prefix.pch";
+				INSTALL_PATH = /Applications/LappyLogger.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -660,15 +538,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FB55E6DE19EEDB04009A5AB4 /* Build configuration list for PBXNativeTarget "LappyLoggerWidget" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FB55E6D919EEDB04009A5AB4 /* Debug */,
-				FB55E6DA19EEDB04009A5AB4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		FBDFE5C119CC878B00FAFA90 /* Build configuration list for PBXProject "LappyLogger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

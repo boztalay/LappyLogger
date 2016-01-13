@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Ben Oztalay. All rights reserved.
 //
 
+#import <AppKit/AppKit.h>
+
 #import "LPLMouseClicksDataSource.h"
 #import "LPLMouseClicksDataTranslator.h"
 #import "LPLLogger.h"
@@ -48,41 +50,55 @@ static NSInteger mouseClicksSinceLastRecord;
     return self;
 }
 
-CGEventRef mouseClickEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon)
-{
-    if(type != kCGEventLeftMouseDown && type != kCGEventRightMouseDown) {
-        return event;
-    }
-    
-    if(mouseClicksSinceLastRecord < 0) {
-        mouseClicksSinceLastRecord = 0;
-    }
-    
-    mouseClicksSinceLastRecord++;
-    
-    return event;
-}
+//CGEventRef mouseClickEventCallback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void *refcon)
+//{
+//    if(type != kCGEventLeftMouseDown && type != kCGEventRightMouseDown) {
+//        return event;
+//    }
+//    
+//    if(mouseClicksSinceLastRecord < 0) {
+//        mouseClicksSinceLastRecord = 0;
+//    }
+//    
+//    mouseClicksSinceLastRecord++;
+//    
+//    return event;
+//}
+//
+//- (BOOL)setUpMouseClickMonitoring
+//{
+//    CFMachPortRef eventTap;
+//    CGEventMask eventMask;
+//    CFRunLoopSourceRef runLoopSource;
+//    
+//    eventMask = (1 << kCGEventLeftMouseDown) | (1 << kCGEventRightMouseDown);
+//    eventTap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, 0, eventMask, mouseClickEventCallback, NULL);
+//    if(!eventTap) {
+//        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't create the event tap! Mouse click logging won't work!"];
+//        return NO;
+//    }
+//    
+//    runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0);
+//    CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopCommonModes);
+//    CGEventTapEnable(eventTap, true);
+//    
+//    dispatch_async(dispatch_queue_create("com.boztalay.LappyLogger.mouseClickLogging", 0), ^ {
+//        CFRunLoopRun();
+//    });
+//    
+//    return YES;
+//}
 
 - (BOOL)setUpMouseClickMonitoring
 {
-    CFMachPortRef eventTap;
-    CGEventMask eventMask;
-    CFRunLoopSourceRef runLoopSource;
-    
-    eventMask = (1 << kCGEventLeftMouseDown) | (1 << kCGEventRightMouseDown);
-    eventTap = CGEventTapCreate(kCGSessionEventTap, kCGHeadInsertEventTap, 0, eventMask, mouseClickEventCallback, NULL);
-    if(!eventTap) {
-        [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't create the event tap! Mouse click logging won't work!"];
-        return NO;
-    }
-    
-    runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, eventTap, 0);
-    CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopCommonModes);
-    CGEventTapEnable(eventTap, true);
-    
-    dispatch_async(dispatch_queue_create("com.boztalay.LappyLogger.mouseClickLogging", 0), ^ {
-        CFRunLoopRun();
-    });
+    [NSEvent addGlobalMonitorForEventsMatchingMask:(NSLeftMouseDownMask | NSRightMouseDownMask | NSOtherMouseDownMask)
+                                           handler:^(NSEvent *event) {
+        if(mouseClicksSinceLastRecord < 0) {
+            mouseClicksSinceLastRecord = 0;
+        }
+                                               
+        mouseClicksSinceLastRecord++;
+    }];
     
     return YES;
 }

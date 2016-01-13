@@ -7,14 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LPLLappyLogger.h"
+#import "LPLAppDelegate.h"
 
 int main(int argc, const char* argv[]) {
     @autoreleasepool {
-        BOOL couldStart = [[LPLLappyLogger sharedInstance] startWithArgc:argc andArgv:argv];
-        if(couldStart) {
-            CFRunLoopRun();
-        }
+        LPLAppDelegate* delegate = [[LPLAppDelegate alloc] init];
+        [delegate setArgc:argc andArgv:argv];
+        
+        NSApplication* application = [NSApplication sharedApplication];
+        [application setDelegate:delegate];
+        [NSApp run];
     }
-    return 0;
+
+    return 1;
 }

@@ -1,2 +1,2 @@
-cp ./LappyLoggerRelease/Products/usr/local/bin/LappyLogger /usr/local/bin/LappyLogger
-cp ./LappyLogger/LappyLogger/com.boztalay.LappyLogger.plist /Library/LaunchDaemons/com.boztalay.LappyLogger.plist
+cp -r ./LappyLoggerRelease/Products/Applications/LappyLogger.app /Applications/LappyLogger.app
+cp ./LappyLoggerRelease/Products/Library/LaunchDaemons/com.boztalay.LappyLogger.plist /Library/LaunchDaemons/
