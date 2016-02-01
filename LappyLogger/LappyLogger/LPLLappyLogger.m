@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Ben Oztalay. All rights reserved.
 //
 
+#import <AppKit/AppKit.h>
+
 #import "LPLLappyLogger.h"
 #import "LPLLogger.h"
 #import "LPLConfigManager.h"
@@ -205,7 +207,7 @@
     for(LPLDataSource* dataSource in self.dataSources) {
         if(dataSource.restartRequested) {
             [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"A data source requested a restart! Restarting"];
-            CFRunLoopStop(CFRunLoopGetCurrent());
+            [[NSApplication sharedApplication] terminate:self];
         }
     }
 }

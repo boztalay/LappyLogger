@@ -67,7 +67,7 @@
 		FB8B61301C46DC8200402074 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /Library/LaunchDaemons;
+			dstPath = /Library/LaunchAgents;
 			dstSubfolderSpec = 0;
 			files = (
 				FB8B61311C46DC9D00402074 /* com.boztalay.LappyLogger.plist in CopyFiles */,
