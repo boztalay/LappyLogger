@@ -39,7 +39,7 @@ sudo ./install.sh
 sudo launchctl load -w -F /Library/LaunchDaemons/com.boztalay.LappyLogger.plist
 ```
 
-For some reason it likes to run as an app in your Dock, which is annoying. But, it should be up and running! Check that `~/.LappyLogger` exists now. That directory holds the configuration (`config.plist`), log file (`LappyLogger.log`), and the actual data (`logData/`).
+It should be up and running! Check that `~/.LappyLogger` exists now. That directory holds the configuration (`config.plist`), log file (`LappyLogger.log`), and the actual data (`logData/`).
 
 If you ever want to stop using LappyLogger, you can unload the process from launchd by running
 
