@@ -32,6 +32,8 @@ BOOL checkAccessibility() {
     BOOL couldStart = [[LPLLappyLogger sharedInstance] startWithArgc:self.argc andArgv:self.argv];
     if(!couldStart) {
         NSLog(@"Uh oh! Lappy Logger couldn't start!");
+    } else {
+        NSLog(@"Lappy Logger started");
     }
 }
 
