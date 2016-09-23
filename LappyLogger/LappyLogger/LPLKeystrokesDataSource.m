@@ -108,24 +108,10 @@ static NSInteger keystrokesSinceLastRecord;
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Recording the keystrokes data point..."];
     [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"%ld keystrokes since the last record", keystrokesSinceLastRecord];
     
-    if(keystrokesSinceLastRecord <= 0) {
-        self.numDataPointsWithoutData++;
-    } else {
-        self.numDataPointsWithoutData = 0;
-    }
-    
-    // If we have too many consecutive data points without data, let
-    // the LappyLogger know something's wrong
-    if(self.numDataPointsWithoutData >= kMaxDataPointsWithoutData) {
-        self.restartRequested = YES;
-    }
-    
     if(keystrokesSinceLastRecord < 0) {
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Looks like there haven't been any recorded keystrokes!"];
         return;
     }
-    
-    keystrokesSinceLastRecord = 0;
     
     [[LPLLogger sharedInstance] incrementIndent];
     BOOL writeSuccess = [self.logFileWriter appendDataPointAndReturnSuccess:[NSNumber numberWithUnsignedShort:(unsigned short)keystrokesSinceLastRecord]];
@@ -135,6 +121,20 @@ static NSInteger keystrokesSinceLastRecord;
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Couldn't append the latest datapoint to the log file!"];
     } else {
         [[LPLLogger sharedInstance] logFromClass:kLoggingPrefix withMessage:@"Successfully recorded the datapoint"];
+    }
+    
+    if(keystrokesSinceLastRecord <= 0) {
+        self.numDataPointsWithoutData++;
+    } else {
+        self.numDataPointsWithoutData = 0;
+    }
+    
+    keystrokesSinceLastRecord = 0;
+    
+    // If we have too many consecutive data points without data, let
+    // the LappyLogger know something's wrong
+    if(self.numDataPointsWithoutData >= kMaxDataPointsWithoutData) {
+        self.restartRequested = YES;
     }
 }
 
